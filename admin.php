@@ -56,6 +56,10 @@
 						include 'views/admin/supir/kelola-supir.php';
 					} elseif ($page == 'mobil') {
 						include 'views/admin/mobil/kelola-mobil.php';
+					} elseif ($page == 'kebun') {
+						include 'views/admin/kebun/kelola-kebun.php';
+					} elseif ($page == 'pelabuhan') {
+						include 'views/admin/pelabuhan/kelola-pelabuhan.php';
 					}
 				}
 

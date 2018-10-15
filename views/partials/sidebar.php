@@ -31,19 +31,25 @@
         <li class="<?php echo ($_GET['page'] == 'supir')?'active':''; ?>">
             <a href="?page=supir">
                 <i class="fa fa-fw fa-user"></i> 
-                Kelola Supir
+                Data Supir
             </a>
         </li>
         <li class="<?php echo ($_GET['page'] == 'mobil')?'active':''; ?>">
             <a href="?page=mobil">
-                <i class="fa fa-fw fa-car"></i>
-                Kelola Mobil
+                <i class="fa fa-fw fa-truck"></i>
+                Data Mobil
             </a>
         </li>
-        <li>
-            <a href="#">
-                <i class="fa fa-fw fa-paper-plane"></i>
-                Contact
+        <li class="<?php echo ($_GET['page'] == 'kebun')?'active':''; ?>">
+            <a href="?page=kebun">
+                <i class="fa fa-fw fa-tree"></i>
+                Data Kebun Sawit
+            </a>
+        </li>
+        <li class="<?php echo ($_GET['page'] == 'pelabuhan')?'active':''; ?>">
+            <a href="?page=pelabuhan">
+                <i class="fa fa-fw fa-warehouse"></i>
+                Data Pelabuhan
             </a>
         </li>
     </ul>

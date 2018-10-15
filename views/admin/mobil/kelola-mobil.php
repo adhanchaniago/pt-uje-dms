@@ -42,7 +42,7 @@
 								<td><?php echo $value['merk'] ?></td>
 								<td><?php echo $value['jenis'] ?></td>
 								<td><?php echo number_format($value['gross']) ?> KG</td>
-								<td><?php echo $value['status'] ?></td>
+								<td><?php echo $value['status'] == '1' ? 'Jalan' : 'Parkir' ?></td>
 								<td><img src="/assets/img/mobil/<?php echo $value['foto'] ?>" width="150px"></td>
 								<td>
 									<button type="button" class="btn btn-success btn-sm btn-ubah-mobil" onclick="getDataMobil(<?php echo $value['id'] ?>)"><i class="fa fa-pencil-alt"></i> UBAH</button> 
@@ -109,7 +109,7 @@
 						<input type="text" class="form-control" id="jenis" name="jenis" value="" required>
 					</div>
 					<div class="form-group">
-						<label for="gross">Gross</label>
+						<label for="gross">Gross (KG)</label>
 						<input type="text" class="form-control" id="gross" name="gross" value="" required>
 					</div>
 					<div class="form-group">
