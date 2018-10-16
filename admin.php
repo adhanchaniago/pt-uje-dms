@@ -60,6 +60,10 @@
 						include 'views/admin/kebun/kelola-kebun.php';
 					} elseif ($page == 'pelabuhan') {
 						include 'views/admin/pelabuhan/kelola-pelabuhan.php';
+					} elseif ($page == 'tambah-do') {
+						include 'views/admin/do/tambah-do.php';
+					} elseif ($page == 'daftar-do') {
+						include 'views/admin/do/daftar-do.php';
 					}
 				}
 

@@ -11,23 +11,6 @@
                 Home
             </a>
         </li>
-        <!-- <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fas fa-copy"></i>
-                Pages
-            </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li> -->
         <li class="<?php echo ($_GET['page'] == 'supir')?'active':''; ?>">
             <a href="?page=supir">
                 <i class="fa fa-fw fa-user"></i> 
@@ -51,6 +34,26 @@
                 <i class="fa fa-fw fa-warehouse"></i>
                 Data Pelabuhan
             </a>
+        </li>
+        <?php  
+            if ($_GET['page'] == 'tambah-do' || $_GET['page'] == 'daftar-do') {
+                echo '<li class="active">';
+            } else {
+                echo '<li>';
+            }
+        ?>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fas fa-truck-moving"></i>
+                Armada Berjalan
+            </a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="?page=tambah-do">Tambah DO</a>
+                </li>
+                <li>
+                    <a href="?page=daftar-do">Daftar DO</a>
+                </li>
+            </ul>
         </li>
     </ul>
 </nav>
