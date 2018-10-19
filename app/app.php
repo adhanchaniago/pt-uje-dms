@@ -25,4 +25,12 @@
 		return $data;
 	}
 
+	function checkSPB($id) {
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_spb WHERE jalan_detail_id = '$id'";
+		$process = mysqli_query($conn, $query);
+		$count = mysqli_num_rows($process);
+		return $count;
+	}
+
 ?>

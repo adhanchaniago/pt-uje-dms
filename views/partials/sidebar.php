@@ -44,7 +44,7 @@
         ?>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-truck-moving"></i>
-                Armada Berjalan
+                Delivery Order
             </a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>

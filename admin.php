@@ -64,6 +64,14 @@
 						include 'views/admin/do/tambah-do.php';
 					} elseif ($page == 'daftar-do') {
 						include 'views/admin/do/daftar-do.php';
+					} elseif ($page == 'detail-do') {
+						include 'views/admin/do/detail-do.php';
+					} elseif ($page == 'cetak-detail-do') {
+						include 'views/admin/do/cetak-detail-do.php';
+					} elseif ($page == 'cetak-pengantar') {
+						include 'views/admin/do/cetak-pengantar.php';
+					} elseif ($page == 'isi-spb') {
+						include 'views/admin/do/isi-spb.php';
 					}
 				}
 

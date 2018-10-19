@@ -361,6 +361,186 @@ $(function(){
 		});
 	});
 
+	$('#jenis').select2({
+		theme: 'bootstrap4',
+		width: '100%',
+		placeholder: "Pilih Jenis Barang",
+	});
+
+	$('#kebun_id').select2({
+		theme: 'bootstrap4',
+		width: '100%',
+		placeholder: "Pilih Perkebunan Sawit",
+	});
+
+	$('#pelabuhan_id').select2({
+		theme: 'bootstrap4',
+		width: '100%',
+		placeholder: "Pilih Pelabuhan Bongkar Muat",
+	});
+
+	$('#armada_berangkat').select2({
+		theme: 'bootstrap4',
+		width: '100%',
+		placeholder: "Pilih Armada Yang Akan Berangkat",
+	});
+
+	$('#do_tanggal').datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		autoClose: true,
+	});
+
+	$('#tanggal_armada').datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		autoClose: true,
+	});
+
+	$('#btn-tambah-armada').on('click', function(){
+		var armada_id = $('#armada_berangkat').val();
+		var tgl_berangkat = $('#tanggal_armada').val();
+		$.ajax({
+			url: '/app/mobil/get-data-mobil.php',
+			method: 'POST',
+			dataType: 'JSON',
+			data: { uid: armada_id },
+			success: function(data){
+				var newRow = 	'<tr>';
+					newRow += 		'<input type="hidden" name="mobil_id[]" value="'+data.data.mobilID+'">';
+					newRow += 		'<td>ID:'+data.data.mobilID+'</td>';
+					newRow += 		'<td>'+data.data.plate+'</td>';
+					newRow += 		'<td>'+data.data.nama+'</td>';
+					newRow += 		'<td>'+data.data.gross+'KG</td>';
+					newRow += 		'<td>'+tgl_berangkat+'</td>';
+					newRow += 		'<input type="hidden" name="tanggal_berangkat[]" value="'+tgl_berangkat+'">';
+					newRow += 	'</tr>';
+
+				$('#tb-armada-berjalan tbody').append(newRow);
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+			}
+		});
+	});
+
+	$('#form-tambah-do').on('submit', function(e){
+		e.preventDefault();
+		var formData = new FormData(this);
+		$.ajax({
+			url: '/app/do/tambah-do.php',
+			method: 'POST',
+			dataType: 'JSON',
+			beforeSend: function(){
+				$('#btn-tambah-do').prop('disabled', 'disabled');
+			},
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data){
+				if (data.status == 'OK'){
+					swal({
+						title: 'Success!',
+						text: data.message,
+						type: 'success',
+						showConfirmButton: false,
+						timer: 2000
+					}).then((result) => {
+						if (result.dismiss){
+							window.location.href = data.url;
+						}
+					});
+				} else{
+					swal({
+						title: 'Error!',
+						text: data.message,
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+				$('#btn-tambah-do').removeAttr('disabled');
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+				$('#btn-tambah-do').removeAttr('disabled');
+			}
+		});
+	});
+
+	$('#tabel-list-armada').DataTable();
+
+	$('#table-data-do').DataTable();
+
+	$('#muat_tanggal').datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		autoClose: true,
+	});
+
+	$('#bongkar_tanggal').datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		autoClose: true,
+	});
+
+	$('#form-input-spb').on('submit', function(e){
+		e.preventDefault();
+		var formData = new FormData(this);
+		$.ajax({
+			url: '/app/do/input-spb.php',
+			method: 'POST',
+			dataType: 'JSON',
+			beforeSend: function(){
+				$('#btn-input-spb').prop('disabled', 'disabled');
+			},
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data){
+				if (data.status == 'OK'){
+					swal({
+						title: 'Success!',
+						text: data.message,
+						type: 'success',
+						showConfirmButton: false,
+						timer: 2000
+					}).then((result) => {
+						if (result.dismiss){
+							window.location.href = data.url;
+						}
+					});
+				} else{
+					swal({
+						title: 'Error!',
+						text: data.message,
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+				$('#btn-input-spb').removeAttr('disabled');
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+				$('#btn-input-spb').removeAttr('disabled');
+			}
+		});
+	});
+
 });
 
 // KELOLA DATA SUPIR
@@ -463,7 +643,7 @@ function getDataMobil(id) {
 			$('#mobilFormModalLabel').text('Form Ubah Data Mobil');
 			$('#form-mobil').trigger('reset');
 			$('#aksi').val('ubah');
-			$('#uid').val(data.data.id);
+			$('#uid').val(data.data.mobilID);
 			$('#supir_id').val(data.data.supir_id).trigger('change');
 			$('#plate').val(data.data.plate);
 			$('#merk').val(data.data.merk);
@@ -694,4 +874,59 @@ function deleteDataPelabuhan(id) {
 			});
 		}
 	});
+}
+
+function ubahStatusDO(id, status) {
+	if (status == '0') {
+		swal({
+			title: 'Peringatan!',
+			text: "Apakah anda yakin untuk menutup Delivery Order ini? Status tidak akan bisa diubah lagi.",
+			type: 'warning',
+			showCancelButton: true,
+			cancelButtonText: 'Tidak',
+			confirmButtonText: 'Ya, Saya Yakin!'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: '/app/do/ubah-status-do.php',
+					method: 'POST',
+					dataType: 'JSON',
+					data: {
+						uid: id,
+						status: status
+					},
+					success: function(data){
+						if (data.status == 'OK'){
+							swal({
+								title: 'Success!',
+								text: data.message,
+								type: 'success',
+								showConfirmButton: false,
+								timer: 2000
+							}).then((result) => {
+								if (result.dismiss){
+									location.reload();
+								}
+							});
+						} else{
+							swal({
+								title: 'Error!',
+								text: data.message,
+								type: 'error',
+								confirmButtonText: 'OKE'
+							});
+						}
+					},
+					error: function(error){
+						swal({
+							title: 'Error!',
+							text: 'Mohon maaf telah terjadi sebuah kesalahan.',
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					}
+				});
+			}
+		});
+	}
 }
