@@ -26,18 +26,20 @@
 
 							foreach ($list_data as $key => $value) {
 						?>
-							<td><?php echo $key+1 ?></td>
-							<td><?php echo $value['do_no'] ?></td>
-							<td><?php echo date('d/m/Y', strtotime($value['do_tanggal'])) ?></td>
-							<td><?php echo number_format($value['partai']) ?> KG</td>
-							<td><?php echo $value['status'] == '0' ? 'Ongoing' : 'Finished' ?></td>
-							<td>
-								<a href="?page=detail-do&id=<?php echo $value['id'] ?>" target="_blank" class="btn btn-success btn-sm">Detail DO</a> &nbsp;
-								<button type="button" class="btn btn-primary btn-sm <?php echo $value['status'] == '1' ? 'disabled' : '' ?>" onclick="ubahStatusDO(<?php echo $value['id'].','.$value['status'] ?>)">Finished</button> &nbsp;
-								<button type="button" class="btn btn-primary btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-laporan-spb.php?id=<?php echo $value['id'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
-									<i class="fa fa-print"></i> Laporan SPB 
-								</button>
-							</td>
+							<tr>
+								<td><?php echo $key+1 ?></td>
+								<td><?php echo $value['do_no'] ?></td>
+								<td><?php echo date('d/m/Y', strtotime($value['do_tanggal'])) ?></td>
+								<td><?php echo number_format($value['partai']) ?> KG</td>
+								<td><?php echo $value['status'] == '0' ? 'Ongoing' : 'Finished' ?></td>
+								<td>
+									<a href="?page=detail-do&id=<?php echo $value['id'] ?>" target="_blank" class="btn btn-success btn-sm">Detail DO</a> &nbsp;
+									<button type="button" class="btn btn-primary btn-sm <?php echo $value['status'] == '1' ? 'disabled' : '' ?>" onclick="ubahStatusDO(<?php echo $value['id'].','.$value['status'] ?>)">Finished</button> &nbsp;
+									<button type="button" class="btn btn-primary btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-laporan-spb.php?id=<?php echo $value['id'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
+										<i class="fa fa-print"></i> Laporan SPB 
+									</button>
+								</td>
+							</tr>
 						<?php
 							}
 						?>
