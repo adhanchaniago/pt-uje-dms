@@ -35,7 +35,9 @@
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center"><img src="assets/img/logo2.png" width="200px"></h5>
+						<a href="home.php">
+							<h5 class="card-title text-center"><img src="assets/img/logo2.png" width="200px"></h5>
+						</a>
 						<p class="text-center">
 							Silahkan Masukkan Username dan Password :
 						</p>

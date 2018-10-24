@@ -47,9 +47,11 @@
                 Delivery Order
             </a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="?page=tambah-do">Tambah DO</a>
-                </li>
+                <?php if ($hak_akses == 'admin'): ?>
+                    <li>
+                        <a href="?page=tambah-do">Tambah DO</a>
+                    </li>
+                <?php endif ?>
                 <li>
                     <a href="?page=daftar-do">Daftar DO</a>
                 </li>

@@ -12,7 +12,9 @@
                 <li class="nav-item <?php echo ($_GET['page'] == 'profile')?'active':''; ?>">
                     <a class="nav-link" href="?page=profile">PROFILE</a>
                 </li>
-
+                <li class="nav-item <?php echo ($_GET['page'] == 'ubah-password')?'active':''; ?>">
+                    <a class="nav-link" href="?page=ubah-password">PASSWORD</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#logout" id="btn-logout">LOGOUT</a>
                 </li>

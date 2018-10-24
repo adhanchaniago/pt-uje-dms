@@ -96,6 +96,54 @@ $(function(){
 		});
 	});
 
+	$('#form-ubah-password').on('submit', function(e){
+		e.preventDefault();
+		var formData = new FormData(this);
+		$.ajax({
+			url: '/app/password/ubah-password.php',
+			method: 'POST',
+			dataType: 'JSON',
+			beforeSend: function(){
+				$('#btn-password').prop('disabled', 'disabled');
+			},
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data){
+				if (data.status == 'OK'){
+					swal({
+						title: 'Success!',
+						text: data.message,
+						type: 'success',
+						showConfirmButton: false,
+						timer: 2000
+					}).then((result) => {
+						if (result.dismiss){
+							$('#form-ubah-password').trigger('reset');
+						}
+					});
+				} else{
+					swal({
+						title: 'Error!',
+						text: data.message,
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+				$('#btn-password').removeAttr('disabled');
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+				$('#btn-password').removeAttr('disabled');
+			}
+		});
+	});
+
 	$('#table-data-supir').DataTable();
 
 	$('#btn-tambah-supir').on('click', function(){

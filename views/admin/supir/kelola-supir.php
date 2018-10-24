@@ -6,8 +6,10 @@
 	<div class="col-md-9">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Kelola Data Supir</h5><hr>
-				<button type="button" class="btn btn-primary" id="btn-tambah-supir">Tambah Supir Baru</button><br><br>
+				<h5 class="card-title">Data Supir</h5><hr>
+				<?php if ($hak_akses == 'admin'): ?>
+					<button type="button" class="btn btn-primary" id="btn-tambah-supir">Tambah Supir Baru</button><br><br>
+				<?php endif ?>
 				<table id="table-data-supir" class="table table-bordered display responsive nowrap" style="width:100%">
 					<thead>
 						<tr>
@@ -21,7 +23,9 @@
 							<th>Telepon</th>
 							<th>KTP IMG</th>
 							<th>SIM IMG</th>
-							<th>Aksi</th>
+							<?php if ($hak_akses == 'admin'): ?>
+								<th>Aksi</th>
+							<?php endif ?>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,10 +53,14 @@
 							<td><?php echo $value['telepon'] ?></td>
 							<td><img src="/assets/img/ktp/<?php echo $value['ktp_img'] ?>" width="150px"></td>
 							<td><img src="/assets/img/sim/<?php echo $value['ktp_img'] ?>" width="150px"></td>
-							<td>
-								<button type="button" class="btn btn-success btn-sm btn-ubah-supir" onclick="getDataSupir(<?php echo $value['id'] ?>)"><i class="fa fa-pencil-alt"></i> UBAH</button> 
-								<button type="button" class="btn btn-danger btn-sm btn-hapus-supir" onclick="deleteDataSupir(<?php echo $value['id'] ?>)"><i class="fa fa-trash-alt"></i> HAPUS</button>
-							</td>
+							<?php if ($hak_akses == 'admin'): ?>
+								<td>
+									<div class="btn-group">
+										<button type="button" class="btn btn-success btn-sm btn-ubah-supir" onclick="getDataSupir(<?php echo $value['id'] ?>)"><i class="fa fa-edit"></i>&nbsp;UBAH</button> 
+										<button type="button" class="btn btn-danger btn-sm btn-hapus-supir" onclick="deleteDataSupir(<?php echo $value['id'] ?>)"><i class="fa fa-eraser"></i>&nbsp;HAPUS</button>
+									</div>
+								</td>
+							<?php endif ?>
 						</tr>
 
 						<?php } ?>

@@ -16,6 +16,17 @@
 	$alamat = sanitizeThis($_POST['alamat']);
 	$telepon = sanitizeThis($_POST['telepon']);
 
+	// check NIK
+	
+	$checkNikSim = checkNikSim($ktp_no, $sim_no);
+	
+	if ($checkNikSim != '0') {
+		$data['status'] = 'ERROR';
+		$data['message'] = 'NIK atau SIM yang diinputkan sudah terdaftar!';
+		echo json_encode($data);
+		die();
+	}
+
 	// Upload Foto KTP
 
 	$file_type = strtolower(pathinfo($_FILES['ktp_img']['name'], PATHINFO_EXTENSION));

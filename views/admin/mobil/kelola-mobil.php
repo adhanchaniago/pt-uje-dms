@@ -7,8 +7,10 @@
 	<div class="col-md-9">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Kelola Data Supir</h5><hr>
-				<button type="button" class="btn btn-primary" id="btn-tambah-mobil">Tambah Mobil Baru</button><br><br>
+				<h5 class="card-title">Data Mobil</h5><hr>
+				<?php if ($hak_akses == 'admin'): ?>
+					<button type="button" class="btn btn-primary" id="btn-tambah-mobil">Tambah Mobil Baru</button><br><br>
+				<?php endif ?>
 				<table id="table-data-mobil" class="table table-bordered display responsive nowrap" style="width:100%">
 					<thead>
 						<tr>
@@ -20,7 +22,9 @@
 							<th>Gross</th>
 							<th>Status</th>
 							<th>Foto</th>
-							<th>Aksi</th>
+							<?php if ($hak_akses == 'admin'): ?>
+								<th>Aksi</th>
+							<?php endif ?>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,10 +48,14 @@
 								<td><?php echo number_format($value['gross']) ?> KG</td>
 								<td><?php echo $value['status'] == '1' ? 'Jalan' : 'Parkir' ?></td>
 								<td><img src="/assets/img/mobil/<?php echo $value['foto'] ?>" width="150px"></td>
-								<td>
-									<button type="button" class="btn btn-success btn-sm btn-ubah-mobil" onclick="getDataMobil(<?php echo $value['id'] ?>)"><i class="fa fa-pencil-alt"></i> UBAH</button> 
-									<button type="button" class="btn btn-danger btn-sm btn-hapus-mobil" onclick="deleteDataMobil(<?php echo $value['id'] ?>)"><i class="fa fa-trash-alt"></i> HAPUS</button>
-								</td>
+								<?php if ($hak_akses == 'admin'): ?>
+									<td>
+										<div class="btn-group">
+											<button type="button" class="btn btn-success btn-sm btn-ubah-mobil" onclick="getDataMobil(<?php echo $value['id'] ?>)"><i class="fa fa-edit"></i>&nbsp;UBAH</button> 
+											<button type="button" class="btn btn-danger btn-sm btn-hapus-mobil" onclick="deleteDataMobil(<?php echo $value['id'] ?>)"><i class="fa fa-eraser"></i>&nbsp;HAPUS</button>
+										</div>
+									</td>
+								<?php endif ?>
 							</tr>
 						<?php
 							}
@@ -85,7 +93,10 @@
 								$qSupir = "SELECT * FROM tb_supir";
 								$pSupir = mysqli_query($conn, $qSupir);
 								while($rSupir = mysqli_fetch_array($pSupir)) {
-									$dSupir[] = $rSupir;
+									$check = checkSupir($rSupir['id']);
+									if ($check == '0') {
+										$dSupir[] = $rSupir;
+									}
 								}
 								foreach ($dSupir as $key => $value) {
 									

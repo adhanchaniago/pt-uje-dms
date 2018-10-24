@@ -6,8 +6,15 @@
 
 	$conn = koneksi();
 
+	$hak_akses = sanitizeThis($_SESSION['akses']);
+
 	if (!isset($_SESSION['uid'])) {
 		session_unset();
+		header('Location:login.php');
+		die();
+	}
+
+	if ($hak_akses != 'admin') {
 		header('Location:login.php');
 		die();
 	}
@@ -52,6 +59,8 @@
 						include 'views/admin/home.php';
 					} elseif ($page == 'profile') {
 						include 'views/admin/profile.php';
+					} elseif ($page == 'ubah-password') {
+						include 'views/admin/ubah-password.php';
 					} elseif ($page == 'supir') {
 						include 'views/admin/supir/kelola-supir.php';
 					} elseif ($page == 'mobil') {

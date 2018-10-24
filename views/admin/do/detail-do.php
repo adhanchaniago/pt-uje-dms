@@ -133,10 +133,14 @@
 								<td><?php echo date('d M Y', strtotime($vDetail['tanggal_berangkat'])) ?></td>
 								<td><?php echo checkSPB($vDetail['detailID']) == '0' ? 'Belum' : 'Sudah' ?></td>
 								<td>
-									<button class="btn btn-success btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-pengantar.php?id=<?php echo $vDetail['detailID'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
-										<i class="fa fa-print"></i> Cetak Surat Pengantar
-									</button>
-									<a href="?page=isi-spb&id=<?php echo $vDetail['detailID'].'&idx='.$jalan_id ?>" class="btn btn-primary btn-sm <?php echo checkSPB($vDetail['detailID']) == '0' ? '' : 'disabled' ?>">Isi SPB</a>
+									<div class="btn-group">
+										<button class="btn btn-success btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-pengantar.php?id=<?php echo $vDetail['detailID'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
+											<i class="fa fa-print"></i>&nbsp;Surat Pengantar
+										</button>
+										<?php if ($hak_akses == 'admin'): ?>
+											<a href="?page=isi-spb&id=<?php echo $vDetail['detailID'].'&idx='.$jalan_id ?>" class="btn btn-primary btn-sm <?php echo checkSPB($vDetail['detailID']) == '0' ? '' : 'disabled' ?>"><i class="fa fa-pen-square"></i>&nbsp;Lengkapi SPB</a>
+										<?php endif ?>
+									</div>
 								</td>
 							</tr>
 						<?php

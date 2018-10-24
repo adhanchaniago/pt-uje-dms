@@ -33,4 +33,28 @@
 		return $count;
 	}
 
+	function checkNikSim($nik, $sim) {
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_supir WHERE ktp_no = '$nik' OR sim_no = '$sim'";
+		$process = mysqli_query($conn, $query) or die(mysqli_error($conn));
+		$row = mysqli_num_rows($process);
+		return $row;
+	}
+
+	function checkSupir($supir_id) {
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_mobil WHERE supir_id = '$supir_id'";
+		$process = mysqli_query($conn, $query);
+		$row = mysqli_num_rows($process);
+		return $row;
+	}
+
+	function checkPassword($pass, $konfr) {
+		$stat = false;
+		if ($pass == $konfr) {
+			$stat = true;
+		}
+		return $stat;
+	}
+
 ?>
