@@ -3,7 +3,7 @@
 <head>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	<title>Beranda | PT. Usaha Jaya Express</title>
+	<title>PT. Usaha Jaya Express</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
@@ -15,7 +15,7 @@
 <body>
 	<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="?page=beranda">
 				<img src="/assets/img/logo1.png" width="70" height="50" alt="">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,26 +24,26 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto justify-content-end">
 					<li class="nav-item active">
-						<a class="nav-link" href="home.php">
+						<a class="nav-link" href="?page=beranda">
 							<i class="fa fa-home"></i>
 							BERANDA
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a class="nav-link" href="?page=tentang">
 							<i class="fa fa-question"></i>
 							TENTANG
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a class="nav-link" href="?page=layanan">
 							<i class="fa fa-clipboard"></i>
 							LAYANAN
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a class="nav-link" href="?page=kontak">
 							<i class="fa fa-address-book"></i>
 							KONTAK
 						</a>
@@ -53,6 +53,23 @@
 			</div>
 		</div>
 	</nav>
+
+	<div class="content">
+		
+		<?php  
+
+			if (isset($_GET['page'])) {
+				$page = $_GET['page'];
+				if ($page == 'beranda') {
+					include 'views/home/beranda.php';
+				} elseif ($page == 'tentang') {
+					include 'views/home/tentang.php';
+				}
+			}
+
+		?>
+
+	</div>
 
 	<script src="assets/vendors/jquery/jquery.min.js"></script>
 	<script src="assets/vendors/popper/dist/umd/popper.min.js"></script>

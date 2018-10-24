@@ -35,7 +35,7 @@
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<a href="home.php">
+						<a href="home.php?page=beranda">
 							<h5 class="card-title text-center"><img src="assets/img/logo2.png" width="200px"></h5>
 						</a>
 						<p class="text-center">
