@@ -1,7 +1,7 @@
 <br><br>
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-6">
 			<div class="card">
 				<div class="card-body">
 					<h3 class="card-title">Sejarah Perusahaan</h3><hr>
@@ -22,33 +22,35 @@
 				</div>
 			</div>
 		</div>
-	</div><br>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-					<h3 class="card-title">Visi Perusahaan</h3><hr>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque hic impedit aliquid tempora suscipit numquam, maxime commodi, error recusandae itaque pariatur, voluptatum vero et tenetur neque vel qui similique. Nobis?
-					</p>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">Visi Perusahaan</h3><hr>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque hic impedit aliquid tempora suscipit numquam, maxime commodi, error recusandae itaque pariatur, voluptatum vero et tenetur neque vel qui similique. Nobis?
+							</p>
+						</div>
+					</div>
+				</div>
+			</div><br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">Misi Perusahaan</h3><hr>
+							<ol>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+								<li>Aliquam tincidunt mauris eu risus.</li>
+								<li>Vestibulum auctor dapibus neque.</li>
+							</ol>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div><br>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-					<h3 class="card-title">Misi Perusahaan</h3><hr>
-					<ol>
-						<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-						<li>Aliquam tincidunt mauris eu risus.</li>
-						<li>Vestibulum auctor dapibus neque.</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
+	</div>		
 </div>
 
 <br><br>

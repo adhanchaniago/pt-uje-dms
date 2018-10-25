@@ -23,26 +23,26 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto justify-content-end">
-					<li class="nav-item active">
+					<li class="nav-item <?php echo ($_GET['page'] == 'beranda')?'active':''; ?>">
 						<a class="nav-link" href="?page=beranda">
 							<i class="fa fa-home"></i>
 							BERANDA
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item <?php echo ($_GET['page'] == 'tentang')?'active':''; ?>">
 						<a class="nav-link" href="?page=tentang">
 							<i class="fa fa-question"></i>
 							TENTANG
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item <?php echo ($_GET['page'] == 'layanan')?'active':''; ?>">
 						<a class="nav-link" href="?page=layanan">
 							<i class="fa fa-clipboard"></i>
 							LAYANAN
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item <?php echo ($_GET['page'] == 'kontak')?'active':''; ?>">
 						<a class="nav-link" href="?page=kontak">
 							<i class="fa fa-address-book"></i>
 							KONTAK
