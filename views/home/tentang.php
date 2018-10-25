@@ -6,18 +6,13 @@
 				<div class="card-body">
 					<h3 class="card-title">Sejarah Perusahaan</h3><hr>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque hic impedit aliquid tempora suscipit numquam, maxime commodi, error recusandae itaque pariatur, voluptatum vero et tenetur neque vel qui similique. Nobis?
+						PT. Usaha Jaya Express adalah perusahaan yang bergerak dalam bidang jasa pengiriman CPO ( Crude Palm Oil). Perusahaan ini didirikan pada 21 mei 1988 oleh Samsuardi Lizar. PT. Usaha Jaya sudah bergerak dalam bidang pengiriman CPO dari tahun 1988 hingga sekarang. Pada awalnya PT. Usaha Jaya Express bergerak dalam bidang pengiriman CPO dan pengiriman barang.
 					</p>
 					<p>
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+						Dalam pengiriman CPO PT. Usaha Jaya Express menggunakan armada truck tangki engkel Nissan, Fuso, Hino dan Mercedes. Jumlah truck tangki CPO PT. Usaha Jaya Express sampai sekarang berjumlah 70 unit tanpa gabungan. Muatan truck tangki PT. Usaha Jaya Express dari 14.500 ton-18.500 ton.Dengan armada yang dimiliki oleh PT. Usaha Jaya Express saat ini, siap memberikan jasa pelayanan pengiriman CPO. Kepuasan pelanggan adalah hal utama yang menjadi komitmen dari perusahaan yang selalu ditingkatkan melalui dukungan team manajemen dan operasional yang berpengalaman, solid dan tanggap terhadap tuntutan perkembangan jaman.
 					</p>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						Aman, terjamin,dan terpercaya merupakan moto yang melandasi PT. Usaha Jaya Express dalam memberikan layanan kepada para pelanggan. Memberikan rasa aman kepada pelanggan, bahwa CPO  yang dikirim dapat terjaga dengan baik, dapat sampai ditujuan dengan tepat dan dalam kondisi yang baik serta dapat menjadi mitra yang dapat dipercaya oleh pelanggan.
 					</p>
 				</div>
 			</div>
@@ -29,7 +24,7 @@
 						<div class="card-body">
 							<h3 class="card-title">Visi Perusahaan</h3><hr>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque hic impedit aliquid tempora suscipit numquam, maxime commodi, error recusandae itaque pariatur, voluptatum vero et tenetur neque vel qui similique. Nobis?
+								Menjadi salah satu perusahaan jasa angkutan CPO terkemuka dan terpercaya yang dapat diandalkan.
 							</p>
 						</div>
 					</div>
@@ -41,9 +36,8 @@
 						<div class="card-body">
 							<h3 class="card-title">Misi Perusahaan</h3><hr>
 							<ol>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-								<li>Vestibulum auctor dapibus neque.</li>
+								<li>Menjalankan kepercayaan pelanggan dalam proses pengiriman CPO.</li>
+								<li>Melaksanakan pengiriman CPO dengan baik, aman, dan cepat.</li>
 							</ol>
 						</div>
 					</div>

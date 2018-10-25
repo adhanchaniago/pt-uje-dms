@@ -23,8 +23,10 @@
 				<div class="card-body">
 					<p><strong>PT. USAHA JAYA EXPRESS</strong></p><hr>
 					<p>Jln. Olo Ladang No. 3</p>
-					<p>Padang - Sumatera Barat</p>
-					<p>25116</p>
+					<p>Padang - Sumatera Barat 25116</p>
+					<p>Tlp : 0751 – 36728</p>
+					<p>Fax : 0751 – 31715</p>
+					<p>Email : usahajayaexpress@gmail.com</p>
 				</div>
 			</div>
 		</div>

@@ -36,12 +36,12 @@
 							TENTANG
 						</a>
 					</li>
-					<li class="nav-item <?php echo ($_GET['page'] == 'layanan')?'active':''; ?>">
+					<!-- <li class="nav-item <?php echo ($_GET['page'] == 'layanan')?'active':''; ?>">
 						<a class="nav-link" href="?page=layanan">
 							<i class="fa fa-clipboard"></i>
 							LAYANAN
 						</a>
-					</li>
+					</li> -->
 					<li class="nav-item <?php echo ($_GET['page'] == 'kontak')?'active':''; ?>">
 						<a class="nav-link" href="?page=kontak">
 							<i class="fa fa-address-book"></i>
