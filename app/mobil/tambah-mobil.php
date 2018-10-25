@@ -13,6 +13,14 @@
 	$jenis = sanitizeThis($_POST['jenis']);
 	$gross = sanitizeThis($_POST['gross']);
 
+	$checkPlate = checkPlate($plate);
+	if ($checkPlate != '0') {
+		$data['status'] = 'ERROR';
+		$data['message'] = 'Plate Mobil yang diinputkan sudah terdaftar!';
+		echo json_encode($data);
+		die();
+	}
+
 	// upload foto mobil
 	
 	$file_type = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));

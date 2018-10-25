@@ -64,6 +64,10 @@
 					include 'views/home/beranda.php';
 				} elseif ($page == 'tentang') {
 					include 'views/home/tentang.php';
+				} elseif ($page == 'layanan') {
+					include 'views/home/layanan.php';
+				} elseif ($page == 'kontak') {
+					include 'views/home/kontak.php';
 				}
 			}
 

@@ -57,4 +57,12 @@
 		return $stat;
 	}
 
+	function checkPlate($plate) {
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_mobil WHERE plate = '$plate'";
+		$process = mysqli_query($conn, $query);
+		$row = mysqli_num_rows($process);
+		return $row;
+	}
+
 ?>
