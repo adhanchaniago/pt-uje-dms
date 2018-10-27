@@ -41,6 +41,7 @@
 										<button type="button" class="btn btn-primary btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-laporan-spb.php?id=<?php echo $value['id'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
 											<i class="fa fa-print"></i>&nbsp;Laporan SPB 
 										</button>
+										<button type="button" class="btn btn-danger btn-sm btn-hapus-do" onclick="deleteDataDO(<?php echo $value['id'] ?>)"><i class="fa fa-eraser"></i>&nbsp;HAPUS</button>
 									</div>
 								</td>
 							</tr>
