@@ -90,11 +90,11 @@
 					<input type="hidden" name="aksi" id="aksi" value="" required>
 					<div class="form-group">
 						<label for="ktp_no">Nomor KTP</label>
-						<input type="text" class="form-control" id="ktp_no" name="ktp_no" value="" required>
+						<input type="text" class="form-control" id="ktp_no" name="ktp_no" value="" required minlength="16" maxlength="16">
 					</div>
 					<div class="form-group">
 						<label for="sim_no">Nomor SIM</label>
-						<input type="text" class="form-control" id="sim_no" name="sim_no" value="" required>
+						<input type="text" class="form-control" id="sim_no" name="sim_no" value="" required minlength="12" maxlength="12">
 					</div>
 					<div class="form-group">
 						<label for="nama">Nama Lengkap</label>

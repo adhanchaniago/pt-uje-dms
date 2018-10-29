@@ -7,7 +7,6 @@
 	$conn = koneksi();
 	$data = [];
 
-	$supir_id = sanitizeThis($_POST['supir_id']);
 	$plate = sanitizeThis($_POST['plate']);
 	$merk = sanitizeThis($_POST['merk']);
 	$jenis = sanitizeThis($_POST['jenis']);
@@ -56,7 +55,7 @@
 		die();
 	}
 
-	$query = "INSERT INTO tb_mobil (supir_id, plate, merk, jenis, gross, status, foto) VALUES('$supir_id', '$plate', '$merk', '$jenis', '$gross', '0', '$new_file_name')";
+	$query = "INSERT INTO tb_mobil (plate, merk, jenis, gross, status, foto) VALUES('$plate', '$merk', '$jenis', '$gross', '0', '$new_file_name')";
 	$process = mysqli_query($conn, $query);
 
 	if ($process) {

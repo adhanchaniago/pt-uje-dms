@@ -11,8 +11,9 @@
 		tb_supir.sim_no, tb_supir.sim_img, tb_supir.ktp_no, tb_supir.ktp_img, 
 		tb_jalan.do_no, tb_jalan.do_tanggal, tb_jalan.partai, tb_jalan.jenis, tb_jalan.nominal, 
 		tb_kebun.nama AS namaKebun, tb_user.nama AS namaAdmin 
-		FROM tb_jalan_detail, tb_mobil, tb_supir, tb_jalan, tb_kebun, tb_user WHERE tb_jalan_detail.mobil_id = tb_mobil.id 
-		AND tb_mobil.supir_id = tb_supir.id AND tb_jalan_detail.jalan_id = tb_jalan.id AND tb_jalan.kebun_id = tb_kebun.id
+		FROM tb_jalan_detail, tb_supir_mobil, tb_mobil, tb_supir, tb_jalan, tb_kebun, tb_user 
+        WHERE tb_jalan_detail.supir_mobil_id = tb_supir_mobil.id AND tb_supir_mobil.mobil_id = tb_mobil.id 
+        AND tb_supir_mobil.supir_id = tb_supir.id AND tb_jalan_detail.jalan_id = tb_jalan.id AND tb_jalan.kebun_id = tb_kebun.id
 		AND tb_jalan.user_id = tb_user.id AND tb_jalan_detail.id = '$detail_id'
 	";
 	$pDetail = mysqli_query($conn, $qDetail) or die(mysqli_error($conn));

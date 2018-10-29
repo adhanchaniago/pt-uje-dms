@@ -1,8 +1,3 @@
-<style type="text/css">
-	#form-mobil > div.modal-body > div:nth-child(4) > span > span.selection {
-		width: 100%;
-	}
-</style>
 <div class="row">
 	<div class="col-md-9">
 		<div class="card">
@@ -16,11 +11,9 @@
 						<tr>
 							<th>#</th>
 							<th>Plate No</th>
-							<th>Nama Supir</th>
 							<th>Merk</th>
 							<th>Jenis</th>
 							<th>Gross</th>
-							<th>Status</th>
 							<th>Foto</th>
 							<?php if ($hak_akses == 'admin'): ?>
 								<th>Aksi</th>
@@ -29,9 +22,8 @@
 					</thead>
 					<tbody>
 						<?php  
-
 							$list_data = [];
-							$query = "SELECT tb_mobil.id, tb_mobil.plate, tb_mobil.merk, tb_mobil.jenis, tb_mobil.gross, tb_mobil.status, tb_mobil.foto, tb_supir.nama FROM tb_mobil, tb_supir WHERE tb_mobil.supir_id = tb_supir.id";
+							$query = "SELECT * FROM tb_mobil";
 							$process = mysqli_query($conn, $query);
 							while($row = mysqli_fetch_array($process)) {
 								$list_data[] = $row;
@@ -42,11 +34,9 @@
 							<tr>
 								<td><?php echo $key+1 ?></td>
 								<td><?php echo $value['plate'] ?></td>
-								<td><?php echo $value['nama'] ?></td>
 								<td><?php echo $value['merk'] ?></td>
 								<td><?php echo $value['jenis'] ?></td>
 								<td><?php echo number_format($value['gross']) ?> KG</td>
-								<td><?php echo $value['status'] == '1' ? 'Jalan' : 'Parkir' ?></td>
 								<td><img src="/assets/img/mobil/<?php echo $value['foto'] ?>" width="150px"></td>
 								<?php if ($hak_akses == 'admin'): ?>
 									<td>
@@ -59,7 +49,6 @@
 							</tr>
 						<?php
 							}
-
 						?>
 					</tbody>
 				</table>
@@ -85,28 +74,6 @@
 					<p>Silahkan isi from berikut ini :</p>
 					<input type="hidden" name="uid" id="uid" value="">
 					<input type="hidden" name="aksi" id="aksi" value="" required>
-					<div class="form-group">
-						<select class="form-control" id="supir_id" name="supir_id" style="width: 100%;" required>
-							<option></option>
-							<?php  
-
-								$qSupir = "SELECT * FROM tb_supir";
-								$pSupir = mysqli_query($conn, $qSupir);
-								while($rSupir = mysqli_fetch_array($pSupir)) {
-									$check = checkSupir($rSupir['id']);
-									if ($check == '0') {
-										$dSupir[] = $rSupir;
-									}
-								}
-								foreach ($dSupir as $key => $value) {
-									
-							?>
-								<option value="<?php echo $value['id'] ?>"><?php echo $value['nama'] ?></option>
-							<?php
-								}
-							?>
-						</select>
-					</div>
 					<div class="form-group">
 						<label for="plate">Nomor Plate</label>
 						<input type="text" class="form-control" id="plate" name="plate" value="" required>

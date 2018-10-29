@@ -126,8 +126,9 @@
         					$qDetail = "
 	        					SELECT tb_jalan_detail.id AS detailID, tb_mobil.plate, tb_supir.nama AS namaSupir, tb_spb.muat_tanggal, 
 	        					tb_spb.muat_total_muatan, tb_spb.bongkar_tanggal, tb_spb.bongkar_total_muatan 
-	        					FROM tb_jalan_detail, tb_mobil, tb_supir, tb_spb WHERE tb_jalan_detail.mobil_id = tb_mobil.id 
-	        					AND tb_mobil.supir_id = tb_supir.id AND tb_spb.jalan_detail_id = tb_jalan_detail.id 
+	        					FROM tb_jalan_detail, tb_supir_mobil, tb_mobil, tb_supir, tb_spb 
+                                WHERE tb_jalan_detail.supir_mobil_id = tb_supir_mobil.id AND tb_supir_mobil.supir_id = tb_supir.id 
+                                AND tb_supir_mobil.mobil_id = tb_mobil.id AND tb_spb.jalan_detail_id = tb_jalan_detail.id 
 	        					AND tb_jalan_detail.jalan_id = '$jalan_id'
         					";
         					$pDetail = mysqli_query($conn, $qDetail);

@@ -102,6 +102,7 @@
 							<th>Merk</th>
 							<th>Gross</th>
 							<th>No SIM</th>
+							<th>No KTP</th>
 							<th>Nama Supir</th>
 							<th>Tgl Berangkat</th>
 							<th>SPB</th>
@@ -112,10 +113,11 @@
 						<?php
 							$listDetail = [];
 							$qDetail = "
-								SELECT tb_jalan_detail.id AS detailID, tb_jalan_detail.tanggal_berangkat, tb_mobil.plate, tb_mobil.merk, 
-								tb_mobil.gross, tb_supir.nama, tb_supir.sim_no
-								FROM tb_jalan_detail, tb_mobil, tb_supir WHERE tb_jalan_detail.mobil_id = tb_mobil.id 
-								AND tb_mobil.supir_id = tb_supir.id AND tb_jalan_detail.jalan_id = '$jalan_id'
+								SELECT tb_jalan_detail.id AS detailID, tb_jalan_detail.tanggal_berangkat, tb_mobil.plate, 
+								tb_mobil.merk, tb_mobil.gross, tb_supir.nama, tb_supir.sim_no, tb_supir.ktp_no
+								FROM tb_jalan_detail, tb_supir_mobil, tb_mobil, tb_supir 
+								WHERE tb_jalan_detail.supir_mobil_id = tb_supir_mobil.id AND tb_supir_mobil.mobil_id = tb_mobil.id  
+								AND tb_supir_mobil.supir_id = tb_supir.id AND tb_jalan_detail.jalan_id = '$jalan_id'
 							";
 							$pDetail = mysqli_query($conn, $qDetail);
 							while($rDetail = mysqli_fetch_array($pDetail)) {
@@ -129,6 +131,7 @@
 								<td><?php echo $vDetail['merk'] ?></td>
 								<td><?php echo number_format($vDetail['gross']) ?> KG</td>
 								<td><?php echo $vDetail['sim_no'] ?></td>
+								<td><?php echo $vDetail['ktp_no'] ?></td>
 								<td><?php echo $vDetail['nama'] ?></td> 
 								<td><?php echo date('d M Y', strtotime($vDetail['tanggal_berangkat'])) ?></td>
 								<td><?php echo checkSPB($vDetail['detailID']) == '0' ? 'Belum' : 'Sudah' ?></td>

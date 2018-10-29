@@ -210,17 +210,10 @@ $(function(){
 
 	$('#table-data-mobil').DataTable();
 
-	$('#supir_id').select2({
-		dropdownParent: $("#mobilFormModal"),
-		theme: 'bootstrap4',
-		placeholder: "Pilih Supir",
-	});
-
 	$('#btn-tambah-mobil').on('click', function(){
 		$('#mobilFormModalLabel').text('Form Input Mobil Baru');
 		$('#form-mobil').trigger('reset');
 		$('#aksi').val('tambah');
-		$('#supir_id').val('').trigger('change');
 		$('#mobilFormModal').modal('show');
 	});
 
@@ -265,7 +258,7 @@ $(function(){
 						confirmButtonText: 'OKE'
 					});
 				}
-				$('#btn-supir').removeAttr('disabled');
+				$('#btn-mobil').removeAttr('disabled');
 			},
 			error: function(error){
 				swal({
@@ -274,7 +267,7 @@ $(function(){
 					type: 'error',
 					confirmButtonText: 'OKE'
 				});
-				$('#btn-supir').removeAttr('disabled');
+				$('#btn-mobil').removeAttr('disabled');
 			}
 		});
 	});
@@ -409,11 +402,11 @@ $(function(){
 		});
 	});
 
-	$('#jenis').select2({
-		theme: 'bootstrap4',
-		width: '100%',
-		placeholder: "Pilih Jenis Barang",
-	});
+	// $('#jenis').select2({
+	// 	theme: 'bootstrap4',
+	// 	width: '100%',
+	// 	placeholder: "Pilih Jenis Barang",
+	// });
 
 	$('#kebun_id').select2({
 		theme: 'bootstrap4',
@@ -449,14 +442,14 @@ $(function(){
 		var armada_id = $('#armada_berangkat').val();
 		var tgl_berangkat = $('#tanggal_armada').val();
 		$.ajax({
-			url: '/app/mobil/get-data-mobil.php',
+			url: '/app/supir_mobil/get-detail-armada.php',
 			method: 'POST',
 			dataType: 'JSON',
 			data: { uid: armada_id },
 			success: function(data){
 				var newRow = 	'<tr>';
-					newRow += 		'<input type="hidden" name="mobil_id[]" value="'+data.data.mobilID+'">';
-					newRow += 		'<td>ID:'+data.data.mobilID+'</td>';
+					newRow += 		'<input type="hidden" name="mobil_id[]" value="'+data.data.id+'">';
+					newRow += 		'<td>ID:'+data.data.id+'</td>';
 					newRow += 		'<td>'+data.data.plate+'</td>';
 					newRow += 		'<td>'+data.data.nama+'</td>';
 					newRow += 		'<td>'+data.data.gross+'KG</td>';
@@ -465,6 +458,12 @@ $(function(){
 					newRow += 	'</tr>';
 
 				$('#tb-armada-berjalan tbody').append(newRow);
+				$("#armada_berangkat>option[value='"+data.data.id+"']").attr('disabled','disabled');
+				$('#armada_berangkat').select2({
+					theme: 'bootstrap4',
+					width: '100%',
+					placeholder: "Pilih Armada Yang Akan Berangkat",
+				});
 			},
 			error: function(error){
 				swal({
@@ -589,6 +588,82 @@ $(function(){
 		});
 	});
 
+	$('#table-data-supir-mobil').DataTable();
+
+	$('#supir_id').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Supir",
+	});
+
+	$('#mobil_id').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Mobil",
+	});
+
+	$('#btn-tambah-supir-mobil').on('click', function(){
+		$('#supirMobilFormModalLabel').text('Form Input Supir Mobil Baru');
+		$('#form-supir-mobil').trigger('reset');
+		$('#aksi').val('tambah');
+		$('#supir_id').val('').trigger('change');
+		$('#mobil_id').val('').trigger('change');
+		$('#supirMobilFormModal').modal('show');
+	});
+
+	$('#form-supir-mobil').on('submit', function(e){
+		e.preventDefault();
+		var formData = new FormData(this);
+		var aksi = $('#aksi').val();
+		var target_url = '';
+		if (aksi == 'tambah'){
+			target_url = '/app/supir_mobil/tambah-supir-mobil.php';
+		} else if (aksi == 'ubah'){
+			target_url = '/app/supir_mobil/ubah-supir-mobil.php';
+		}
+		$.ajax({
+			url: target_url,
+			method: 'POST',
+			dataType: 'JSON',
+			beforeSend: function(){
+				$('#btn-supir-mobil').prop('disabled', 'disabled');
+			},
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data){
+				if (data.status == 'OK'){
+					swal({
+						title: 'Success!',
+						text: data.message,
+						type: 'success',
+						showConfirmButton: false,
+						timer: 2000
+					}).then((result) => {
+						if (result.dismiss){
+							location.reload();
+						}
+					});
+				} else{
+					swal({
+						title: 'Error!',
+						text: data.message,
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+				$('#btn-supir-mobil').removeAttr('disabled');
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+				$('#btn-supir-mobil').removeAttr('disabled');
+			}
+		});
+	});
+
 });
 
 // KELOLA DATA SUPIR
@@ -688,11 +763,11 @@ function getDataMobil(id) {
 		dataType: 'JSON',
 		data: { uid: id },
 		success: function(data){
+			var uid = data.data.id;
 			$('#mobilFormModalLabel').text('Form Ubah Data Mobil');
 			$('#form-mobil').trigger('reset');
 			$('#aksi').val('ubah');
-			$('#uid').val(data.data.mobilID);
-			$('#supir_id').val(data.data.supir_id).trigger('change');
+			$('#uid').val(uid);
 			$('#plate').val(data.data.plate);
 			$('#merk').val(data.data.merk);
 			$('#jenis').val(data.data.jenis);
@@ -1007,6 +1082,86 @@ function deleteDataDO(id) {
 						}).then((result) => {
 							if (result.dismiss){
 								// location.reload();
+							}
+						});
+					} else{
+						swal({
+							title: 'Error!',
+							text: data.message,
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					}
+				},
+				error: function(error){
+					swal({
+						title: 'Error!',
+						text: 'Mohon maaf telah terjadi sebuah kesalahan.',
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+			});
+		}
+	});
+}
+
+function getDataSupirMobil(id) {
+	$.ajax({
+		url: '/app/supir_mobil/get-data-supir-mobil.php',
+		method: 'POST',
+		dataType: 'JSON',
+		data: { uid: id },
+		success: function(data){
+			var supir_id = data.data.supir_id;
+			var mobil_id = data.data.mobil_id;
+			$('#supirMobilFormModalLabel').text('Form Ubah Data Supir Mobil');
+			$('#form-supir-mobil').trigger('reset');
+			$('#aksi').val('ubah');
+			$('#uid').val(data.data.id);
+			$('#supir_id').val(supir_id).trigger('change');
+			$('#mobil_id').val(mobil_id).trigger('change');
+			$('#supirMobilFormModal').modal('show');
+		},
+		error: function(error){
+			swal({
+				title: 'Error!',
+				text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+				type: 'error',
+				confirmButtonText: 'OKE'
+			});
+		}
+	});
+}
+
+function deleteDataSupirMobil(id) {
+	swal({
+		title: 'Peringatan!',
+		text: "Apakah anda yakin ingin menghapus data supir mobil ini?",
+		type: 'warning',
+		showCancelButton: true,
+		cancelButtonText: 'Tidak',
+		confirmButtonText: 'Ya, Saya Yakin!'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: '/app/supir_mobil/hapus-supir-mobil.php',
+				method: 'POST',
+				dataType: 'JSON',
+				data: {
+					uid: id
+				},
+				success: function(data){
+					if (data.status == 'OK'){
+						swal({
+							title: 'Success!',
+							text: data.message,
+							type: 'success',
+							showConfirmButton: false,
+							timer: 2000
+						}).then((result) => {
+							if (result.dismiss){
+								location.reload();
 							}
 						});
 					} else{

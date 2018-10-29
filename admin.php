@@ -65,6 +65,8 @@
 						include 'views/admin/supir/kelola-supir.php';
 					} elseif ($page == 'mobil') {
 						include 'views/admin/mobil/kelola-mobil.php';
+					} elseif ($page == 'supir_mobil') {
+						include 'views/admin/supir_mobil/kelola-supir-mobil.php';
 					} elseif ($page == 'kebun') {
 						include 'views/admin/kebun/kelola-kebun.php';
 					} elseif ($page == 'pelabuhan') {
@@ -96,7 +98,7 @@
 	<script src="assets/vendors/airdatepicker/dist/js/datepicker.min.js"></script>
 	<script src="assets/vendors/airdatepicker/dist/js/i18n/datepicker.en.js"></script>
 	<script src="assets/vendors/datatables/datatables.min.js"></script>
-	<script src="assets/vendors/select2/dist/js/select2.min.js"></script>
+	<script src="assets/vendors/select2/dist/js/select2.full.min.js"></script>
 	<script src="assets/js/app.js"></script>
 
 </body>

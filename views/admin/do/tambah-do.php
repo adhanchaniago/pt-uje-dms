@@ -82,7 +82,11 @@
 									<option value=""></option>
 									<?php  
 										$listMobil = [];
-										$qMobil = "SELECT tb_mobil.id, tb_mobil.plate, tb_supir.nama FROM tb_mobil, tb_supir WHERE tb_mobil.supir_id = tb_supir.id AND tb_mobil.status = 0";
+										$qMobil = "
+											SELECT tb_supir_mobil.id, tb_mobil.plate, tb_supir.nama 
+											FROM tb_supir_mobil, tb_mobil, tb_supir WHERE tb_supir_mobil.supir_id = tb_supir.id 
+											AND tb_supir_mobil.mobil_id = tb_mobil.id AND tb_supir_mobil.status = 0
+										";
 										$pMobil = mysqli_query($conn, $qMobil);
 										while($rMobil = mysqli_fetch_array($pMobil)) {
 											$listMobil[] = $rMobil;

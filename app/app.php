@@ -43,7 +43,15 @@
 
 	function checkSupir($supir_id) {
 		$conn = koneksi();
-		$query = "SELECT * FROM tb_mobil WHERE supir_id = '$supir_id'";
+		$query = "SELECT * FROM tb_supir_mobil WHERE supir_id = '$supir_id'";
+		$process = mysqli_query($conn, $query);
+		$row = mysqli_num_rows($process);
+		return $row;
+	}
+
+	function checkMobil($mobil_id) {
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_supir_mobil WHERE mobil_id = '$mobil_id'";
 		$process = mysqli_query($conn, $query);
 		$row = mysqli_num_rows($process);
 		return $row;

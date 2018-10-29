@@ -8,7 +8,6 @@
 	$data = [];
 
 	$uid = sanitizeThis($_POST['uid']);
-	$supir_id = sanitizeThis($_POST['supir_id']);
 	$plate = sanitizeThis($_POST['plate']);
 	$merk = sanitizeThis($_POST['merk']);
 	$jenis = sanitizeThis($_POST['jenis']);
@@ -57,7 +56,7 @@
 		}
 	}
 
-	$query = "UPDATE tb_mobil SET supir_id = '$supir_id', plate = '$plate', merk = '$merk', jenis = '$jenis', gross = '$gross' WHERE id = '$uid'";
+	$query = "UPDATE tb_mobil SET plate = '$plate', merk = '$merk', jenis = '$jenis', gross = '$gross' WHERE id = '$uid'";
 	$process = mysqli_query($conn, $query);
 
 	if ($process) {

@@ -22,7 +22,7 @@
 	}
 	
 	foreach ($listDetail as $vDetail) {
-		$qMobil = "UPDATE tb_mobil SET status = '0' WHERE id = '".$vDetail['mobil_id']."'";
+		$qMobil = "UPDATE tb_supir_mobil SET status = '0' WHERE id = '".$vDetail['supir_mobil_id']."'";
 		$pMobil = mysqli_query($conn, $qMobil);
 	}
 

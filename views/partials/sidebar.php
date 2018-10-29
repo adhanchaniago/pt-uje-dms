@@ -23,6 +23,12 @@
                 Data Mobil
             </a>
         </li>
+        <li class="<?php echo ($_GET['page'] == 'supir_mobil')?'active':''; ?>">
+            <a href="?page=supir_mobil">
+                <i class="fa fa-fw fa-user-tag"></i>
+                Data Supir Mobil
+            </a>
+        </li>
         <li class="<?php echo ($_GET['page'] == 'kebun')?'active':''; ?>">
             <a href="?page=kebun">
                 <i class="fa fa-fw fa-tree"></i>

@@ -38,12 +38,12 @@ CREATE TABLE `tb_jalan` (
   CONSTRAINT `FK2` FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK3` FOREIGN KEY (`kebun_id`) REFERENCES `tb_kebun` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK4` FOREIGN KEY (`pelabuhan_id`) REFERENCES `tb_pelabuhan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jalan` */
 
 insert  into `tb_jalan`(`id`,`user_id`,`kebun_id`,`pelabuhan_id`,`do_no`,`do_tanggal`,`partai`,`jenis`,`nominal`,`status`) values 
-(4,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-10-29',70000,'CPO',2500,1);
+(3,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-10-08',70000,'CPO',2500,1);
 
 /*Table structure for table `tb_jalan_detail` */
 
@@ -52,22 +52,21 @@ DROP TABLE IF EXISTS `tb_jalan_detail`;
 CREATE TABLE `tb_jalan_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jalan_id` int(11) NOT NULL,
-  `supir_mobil_id` int(11) NOT NULL,
+  `mobil_id` int(11) NOT NULL,
   `tanggal_berangkat` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK5` (`jalan_id`),
-  KEY `FK6` (`supir_mobil_id`),
-  CONSTRAINT `FK20` FOREIGN KEY (`supir_mobil_id`) REFERENCES `tb_supir_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK5` FOREIGN KEY (`jalan_id`) REFERENCES `tb_jalan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  KEY `FK6` (`mobil_id`),
+  CONSTRAINT `FK5` FOREIGN KEY (`jalan_id`) REFERENCES `tb_jalan` (`id`),
+  CONSTRAINT `FK6` FOREIGN KEY (`mobil_id`) REFERENCES `tb_mobil` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jalan_detail` */
 
-insert  into `tb_jalan_detail`(`id`,`jalan_id`,`supir_mobil_id`,`tanggal_berangkat`) values 
-(10,4,3,'2018-10-30'),
-(11,4,4,'2018-10-30'),
-(12,4,5,'2018-10-30'),
-(13,4,6,'2018-10-30');
+insert  into `tb_jalan_detail`(`id`,`jalan_id`,`mobil_id`,`tanggal_berangkat`) values 
+(7,3,2,'2018-10-18'),
+(8,3,5,'2018-10-18'),
+(9,3,6,'2018-10-18');
 
 /*Table structure for table `tb_kebun` */
 
@@ -94,24 +93,27 @@ DROP TABLE IF EXISTS `tb_mobil`;
 
 CREATE TABLE `tb_mobil` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supir_id` int(11) NOT NULL,
   `plate` varchar(10) NOT NULL,
   `merk` varchar(100) NOT NULL,
   `jenis` varchar(100) NOT NULL,
   `gross` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL,
   `foto` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `FK1` (`supir_id`),
+  CONSTRAINT `FK1` FOREIGN KEY (`supir_id`) REFERENCES `tb_supir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_mobil` */
 
-insert  into `tb_mobil`(`id`,`plate`,`merk`,`jenis`,`gross`,`foto`) values 
-(1,'BA8397QU','TRUCK HINO','FG8JKKB-GGJL',18800,'a9467b299c83240a7207.jpg'),
-(2,'BA8514OU','TRUCK ISUZU','FVR 34 P',21500,'113b62c77ca4df2e0fa0.jpg'),
-(3,'BA8525ZU','TRUCK NISSAN','CKA 12 H',18000,'b308c023345bd37d7704.jpg'),
-(4,'BA8646AO','LIGHT TRUCK HINO','WU342R-HKMTJD3',17500,'1d008da989849643873c.jpg'),
-(5,'BA8762AO','TRUCK NISSAN','CKA 87 H',18000,'96f50a7ac2d86749741d.jpg'),
-(6,'BA9259AO','TRUCK ISUZU','FYZ 34 T',31000,'6a82ef987bfcdd80c39c.jpg'),
-(8,'BA1111AO','TRUCK NISSAN','FVR 34 P',31000,'db0731021570fdf44d44.jpg');
+insert  into `tb_mobil`(`id`,`supir_id`,`plate`,`merk`,`jenis`,`gross`,`status`,`foto`) values 
+(1,1,'BA8397QU','TRUCK HINO','FG8JKKB-GGJL',18800,0,'a9467b299c83240a7207.jpg'),
+(2,2,'BA8514OU','TRUCK ISUZU','FVR 34 P',21500,0,'113b62c77ca4df2e0fa0.jpg'),
+(3,3,'BA8525ZU','TRUCK NISSAN','CKA 12 H',18000,0,'b308c023345bd37d7704.jpg'),
+(4,4,'BA8646AO','LIGHT TRUCK HINO','WU342R-HKMTJD3',17500,0,'1d008da989849643873c.jpg'),
+(5,5,'BA8762AO','TRUCK NISSAN','CKA 87 H',18000,0,'96f50a7ac2d86749741d.jpg'),
+(6,6,'BA9259AO','TRUCK ISUZU','FYZ 34 T',31000,0,'6a82ef987bfcdd80c39c.jpg');
 
 /*Table structure for table `tb_pelabuhan` */
 
@@ -146,16 +148,15 @@ CREATE TABLE `tb_spb` (
   `bongkar_berat_keseluruhan` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK7` (`jalan_detail_id`),
-  CONSTRAINT `FK7` FOREIGN KEY (`jalan_detail_id`) REFERENCES `tb_jalan_detail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK7` FOREIGN KEY (`jalan_detail_id`) REFERENCES `tb_jalan_detail` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_spb` */
 
 insert  into `tb_spb`(`id`,`jalan_detail_id`,`muat_tanggal`,`muat_total_muatan`,`muat_berat_keseluruhan`,`bongkar_tanggal`,`bongkar_total_muatan`,`bongkar_berat_keseluruhan`) values 
-(8,10,'2018-10-30',17640,30000,'2018-11-03',17500,28000),
-(9,11,'2018-10-30',17660,30000,'2018-11-03',17500,28000),
-(10,12,'2018-10-30',17660,26130,'2018-11-03',17500,24670),
-(11,13,'2018-10-30',17660,26130,'2018-11-03',17500,24670);
+(5,7,'2018-10-19',17690,26250,'2018-10-30',17640,26130),
+(6,8,'2018-10-19',17720,24670,'2018-10-30',17660,24740),
+(7,9,'2018-10-19',18140,25390,'2018-10-30',18070,25280);
 
 /*Table structure for table `tb_supir` */
 
@@ -185,32 +186,6 @@ insert  into `tb_supir`(`id`,`nama`,`jenis_kelamin`,`tempat_lahir`,`tanggal_lahi
 (4,'Helmi Yanto Sofyan','pria','Tanjung Alam','1979-10-13','Marga Jaya RT. 001 RW. 001 Meraksa Aji Tulang Bawang','081345612145','1371111310790011','e58e3172f9a57c7d748c.jpg','791025320161','e58e3172f9a57c7d748c.jpg'),
 (5,'Oyon Riza','pria','Sungai Penuh','1958-07-12','Kel. Sungai Beremas RT. 003 RW. 007 Gates Lubeg Padang','082385748484','1371061207580005','d757088cc4384bb33a9d.jpg','580708140322','d757088cc4384bb33a9d.jpg'),
 (6,'Zulkifli','pria','Sungai Penuh','1958-04-23','Jl. Adinegoro RT. 002 RW. 001 Lubuk Buaya Padang','081378946549','1371112304580001','094a8613b2d69411314c.jpg','580408140565','094a8613b2d69411314c.jpg');
-
-/*Table structure for table `tb_supir_mobil` */
-
-DROP TABLE IF EXISTS `tb_supir_mobil`;
-
-CREATE TABLE `tb_supir_mobil` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `supir_id` int(11) NOT NULL,
-  `mobil_id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK15` (`supir_id`),
-  KEY `FK16` (`mobil_id`),
-  CONSTRAINT `FK15` FOREIGN KEY (`supir_id`) REFERENCES `tb_supir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK16` FOREIGN KEY (`mobil_id`) REFERENCES `tb_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tb_supir_mobil` */
-
-insert  into `tb_supir_mobil`(`id`,`supir_id`,`mobil_id`,`status`) values 
-(3,1,1,0),
-(4,2,2,0),
-(5,3,3,0),
-(6,4,4,0),
-(7,5,5,0),
-(8,6,6,0);
 
 /*Table structure for table `tb_user` */
 

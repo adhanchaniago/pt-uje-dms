@@ -9,12 +9,12 @@
 
 	$uid = sanitizeThis($_POST['uid']);
 
-	$query = "SELECT * FROM tb_mobil WHERE tb_mobil.id = '$uid'";
+	$query = "SELECT * FROM tb_supir_mobil WHERE id = '$uid'";
 	$process = mysqli_query($conn, $query);
-	$dataMobil = mysqli_fetch_assoc($process);
+	$dataSupirMobil = mysqli_fetch_assoc($process);
 
 	$data['status'] = 'OK';
-	$data['data'] = $dataMobil;
+	$data['data'] = $dataSupirMobil;
 
 	echo json_encode($data);
 

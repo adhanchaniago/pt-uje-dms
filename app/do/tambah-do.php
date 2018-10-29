@@ -27,10 +27,10 @@
 	$jalan_id = mysqli_insert_id($conn);
 
 	for ($i = 0; $i < $jml_armada; $i++) {
-		$qDetail = "INSERT INTO tb_jalan_detail (jalan_id, mobil_id, tanggal_berangkat) VALUES('$jalan_id', '$list_armada[$i]', '$list_tanggal[$i]')";
+		$qDetail = "INSERT INTO tb_jalan_detail (jalan_id, supir_mobil_id, tanggal_berangkat) VALUES('$jalan_id', '$list_armada[$i]', '$list_tanggal[$i]')";
 		$pDetail = mysqli_query($conn, $qDetail);
 
-		$qMobil = "UPDATE tb_mobil SET status = '1' WHERE id = '$list_armada[$i]'";
+		$qMobil = "UPDATE tb_supir_mobil SET status = '1' WHERE id = '$list_armada[$i]'";
 		$pMobil = mysqli_query($conn, $qMobil);
 	}
 
