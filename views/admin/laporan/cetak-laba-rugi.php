@@ -8,12 +8,6 @@
     $bulan = sanitizeThis($_GET['bulan']);
     $tahun = sanitizeThis($_GET['tahun']);
 
-	$qSupirMobil = "
-		
-	";
-	// $pSupirMobil = mysqli_query($conn, $qSupirMobil);
-	// $dSupirMobil = mysqli_fetch_assoc($pSupirMobil);
-
 ?>
 <!doctype html>
 <html>

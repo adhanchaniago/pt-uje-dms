@@ -81,6 +81,12 @@
 						include 'views/admin/do/cetak-pengantar.php';
 					} elseif ($page == 'isi-spb') {
 						include 'views/admin/do/isi-spb.php';
+					} elseif ($page == 'kendala') {
+						include 'views/admin/kendala/kelola-kendala.php';
+					} elseif ($page == 'pendapatan-supir') {
+						include 'views/admin/laporan/pendapatan-supir.php';
+					} elseif ($page == 'laba-rugi') {
+						include 'views/admin/laporan/laba-rugi.php';
 					}
 				}
 
