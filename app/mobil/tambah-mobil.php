@@ -55,7 +55,7 @@
 		die();
 	}
 
-	$query = "INSERT INTO tb_mobil (plate, merk, jenis, gross, status, foto) VALUES('$plate', '$merk', '$jenis', '$gross', '0', '$new_file_name')";
+	$query = "INSERT INTO tb_mobil (plate, merk, jenis, gross, foto) VALUES('$plate', '$merk', '$jenis', '$gross', '$new_file_name')";
 	$process = mysqli_query($conn, $query);
 
 	if ($process) {
