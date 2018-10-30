@@ -41,6 +41,12 @@
                 Data Pelabuhan
             </a>
         </li>
+        <li class="<?php echo ($_GET['page'] == 'kendala')?'active':''; ?>">
+            <a href="?page=kendala">
+                <i class="fa fa-fw fa-exclamation-circle"></i>
+                Data Kendala
+            </a>
+        </li>
         <?php  
             if ($_GET['page'] == 'tambah-do' || $_GET['page'] == 'daftar-do') {
                 echo '<li class="active">';
@@ -49,7 +55,7 @@
             }
         ?>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fas fa-truck-moving"></i>
+                <i class="fa fa-fw fa-truck-moving"></i>
                 Delivery Order
             </a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -60,6 +66,26 @@
                 <?php endif ?>
                 <li>
                     <a href="?page=daftar-do">Daftar DO</a>
+                </li>
+            </ul>
+        </li>
+        <?php  
+            if ($_GET['page'] == 'pendapatan-supir' || $_GET['page'] == 'laba-rugi') {
+                echo '<li class="active">';
+            } else {
+                echo '<li>';
+            }
+        ?>
+            <a href="#pageLaporan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-sw fa-folder"></i>
+                Laporan
+            </a>
+            <ul class="collapse list-unstyled" id="pageLaporan">
+                <li>
+                    <a href="?page=pendapatan-supir">Pendapatan Supir</a>
+                </li>
+                <li>
+                    <a href="?page=laba-rugi">Laba Rugi</a>
                 </li>
             </ul>
         </li>

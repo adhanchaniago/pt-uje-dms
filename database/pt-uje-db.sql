@@ -43,7 +43,7 @@ CREATE TABLE `tb_jalan` (
 /*Data for the table `tb_jalan` */
 
 insert  into `tb_jalan`(`id`,`user_id`,`kebun_id`,`pelabuhan_id`,`do_no`,`do_tanggal`,`partai`,`jenis`,`nominal`,`status`) values 
-(4,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-10-29',70000,'CPO',2500,1);
+(4,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-10-29',70000,'CPO',200,1);
 
 /*Table structure for table `tb_jalan_detail` */
 
@@ -64,9 +64,7 @@ CREATE TABLE `tb_jalan_detail` (
 /*Data for the table `tb_jalan_detail` */
 
 insert  into `tb_jalan_detail`(`id`,`jalan_id`,`supir_mobil_id`,`tanggal_berangkat`) values 
-(10,4,3,'2018-10-30'),
 (11,4,4,'2018-10-30'),
-(12,4,5,'2018-10-30'),
 (13,4,6,'2018-10-30');
 
 /*Table structure for table `tb_kebun` */
@@ -88,6 +86,29 @@ CREATE TABLE `tb_kebun` (
 insert  into `tb_kebun`(`id`,`nama`,`alamat`,`telepon`,`email`,`toleransi`) values 
 (1,'PT. AGRO MUKO','Bank Sumut Building, Lt.7, Jl. Imam Bonjol No. 18, Madras Hulu, Medan, Sumatera Utara','(061) 4152043','agromuko@gmail.com',0.2);
 
+/*Table structure for table `tb_kendala` */
+
+DROP TABLE IF EXISTS `tb_kendala`;
+
+CREATE TABLE `tb_kendala` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supir_mobil_id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `kendala` enum('ban','benen','baut roda','oli','selendang') NOT NULL,
+  `biaya` int(11) NOT NULL,
+  `keterangan` varchar(100) DEFAULT '-',
+  PRIMARY KEY (`id`),
+  KEY `FF99` (`supir_mobil_id`),
+  CONSTRAINT `FF99` FOREIGN KEY (`supir_mobil_id`) REFERENCES `tb_supir_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_kendala` */
+
+insert  into `tb_kendala`(`id`,`supir_mobil_id`,`tanggal`,`kendala`,`biaya`,`keterangan`) values 
+(2,4,'2018-10-30','oli',200000,'-'),
+(3,4,'2018-10-30','ban',3000000,'-'),
+(4,9,'2018-10-30','oli',150000,'-');
+
 /*Table structure for table `tb_mobil` */
 
 DROP TABLE IF EXISTS `tb_mobil`;
@@ -105,7 +126,6 @@ CREATE TABLE `tb_mobil` (
 /*Data for the table `tb_mobil` */
 
 insert  into `tb_mobil`(`id`,`plate`,`merk`,`jenis`,`gross`,`foto`) values 
-(1,'BA8397QU','TRUCK HINO','FG8JKKB-GGJL',18800,'a9467b299c83240a7207.jpg'),
 (2,'BA8514OU','TRUCK ISUZU','FVR 34 P',21500,'113b62c77ca4df2e0fa0.jpg'),
 (3,'BA8525ZU','TRUCK NISSAN','CKA 12 H',18000,'b308c023345bd37d7704.jpg'),
 (4,'BA8646AO','LIGHT TRUCK HINO','WU342R-HKMTJD3',17500,'1d008da989849643873c.jpg'),
@@ -152,9 +172,7 @@ CREATE TABLE `tb_spb` (
 /*Data for the table `tb_spb` */
 
 insert  into `tb_spb`(`id`,`jalan_detail_id`,`muat_tanggal`,`muat_total_muatan`,`muat_berat_keseluruhan`,`bongkar_tanggal`,`bongkar_total_muatan`,`bongkar_berat_keseluruhan`) values 
-(8,10,'2018-10-30',17640,30000,'2018-11-03',17500,28000),
 (9,11,'2018-10-30',17660,30000,'2018-11-03',17500,28000),
-(10,12,'2018-10-30',17660,26130,'2018-11-03',17500,24670),
 (11,13,'2018-10-30',17660,26130,'2018-11-03',17500,24670);
 
 /*Table structure for table `tb_supir` */
@@ -179,11 +197,8 @@ CREATE TABLE `tb_supir` (
 /*Data for the table `tb_supir` */
 
 insert  into `tb_supir`(`id`,`nama`,`jenis_kelamin`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`telepon`,`ktp_no`,`ktp_img`,`sim_no`,`sim_img`) values 
-(1,'Zulfikar','pria','Padang','1973-04-20','KP. Kelawi RT. 005 RW. VI Padang','081212341234','1371091607730004','0324b7614f58876a972f.jpg','730408141784','0324b7614f58876a972f.jpg'),
 (2,'Hendri','pria','Padang','1967-09-06','Jl. Belawan No. 14 Kampung Baru Tl. Bayur Padang','081372259425','1305021009720001','65861904ad7c6e135c93.jpg','670908140037','65861904ad7c6e135c93.jpg'),
-(3,'Suardi M','pria','Binuang','1970-04-21','Binuang Kampuang Dalam No. 6 RT. 005 RW. 002 Pauh Padang','081267135533','1371082104700004','d684746fa0b1ceae9ee2.jpg','700408140060','d684746fa0b1ceae9ee2.jpg'),
 (4,'Helmi Yanto Sofyan','pria','Tanjung Alam','1979-10-13','Marga Jaya RT. 001 RW. 001 Meraksa Aji Tulang Bawang','081345612145','1371111310790011','e58e3172f9a57c7d748c.jpg','791025320161','e58e3172f9a57c7d748c.jpg'),
-(5,'Oyon Riza','pria','Sungai Penuh','1958-07-12','Kel. Sungai Beremas RT. 003 RW. 007 Gates Lubeg Padang','082385748484','1371061207580005','d757088cc4384bb33a9d.jpg','580708140322','d757088cc4384bb33a9d.jpg'),
 (6,'Zulkifli','pria','Sungai Penuh','1958-04-23','Jl. Adinegoro RT. 002 RW. 001 Lubuk Buaya Padang','081378946549','1371112304580001','094a8613b2d69411314c.jpg','580408140565','094a8613b2d69411314c.jpg');
 
 /*Table structure for table `tb_supir_mobil` */
@@ -200,17 +215,14 @@ CREATE TABLE `tb_supir_mobil` (
   KEY `FK16` (`mobil_id`),
   CONSTRAINT `FK15` FOREIGN KEY (`supir_id`) REFERENCES `tb_supir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK16` FOREIGN KEY (`mobil_id`) REFERENCES `tb_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_supir_mobil` */
 
 insert  into `tb_supir_mobil`(`id`,`supir_id`,`mobil_id`,`status`) values 
-(3,1,1,0),
 (4,2,2,0),
-(5,3,3,0),
 (6,4,4,0),
-(7,5,5,0),
-(8,6,6,0);
+(9,6,6,0);
 
 /*Table structure for table `tb_user` */
 

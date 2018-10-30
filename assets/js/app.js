@@ -402,12 +402,6 @@ $(function(){
 		});
 	});
 
-	// $('#jenis').select2({
-	// 	theme: 'bootstrap4',
-	// 	width: '100%',
-	// 	placeholder: "Pilih Jenis Barang",
-	// });
-
 	$('#kebun_id').select2({
 		theme: 'bootstrap4',
 		width: '100%',
@@ -662,6 +656,108 @@ $(function(){
 				$('#btn-supir-mobil').removeAttr('disabled');
 			}
 		});
+	});
+
+	$('#supir_mobil_id').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Armada",
+	});
+
+	$('#bulan').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Bulan",
+	});
+
+	$('#tahun').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Tahun",
+	});
+
+	$('#kendala').select2({
+		theme: 'bootstrap4',
+		placeholder: "Pilih Kendala",
+	});
+
+	$('#tanggal').datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		autoClose: true,
+	});
+
+	$('#btn-tambah-kendala').on('click', function(){
+		$('#kendalaFormModalLabel').text('Form Input Kendala Baru');
+		$('#form-kendala').trigger('reset');
+		$('#aksi').val('tambah');
+		$('#supir_mobil_id').val('').trigger('change');
+		$('#kendalaFormModal').modal('show');
+	});
+
+	$('#form-kendala').on('submit', function(e){
+		e.preventDefault();
+		var formData = new FormData(this);
+		var aksi = $('#aksi').val();
+		var target_url = '';
+		if (aksi == 'tambah'){
+			target_url = '/app/kendala/tambah-kendala.php';
+		} else if (aksi == 'ubah'){
+			target_url = '/app/kendala/ubah-kendala.php';
+		}
+		$.ajax({
+			url: target_url,
+			method: 'POST',
+			dataType: 'JSON',
+			beforeSend: function(){
+				$('#btn-kendala').prop('disabled', 'disabled');
+			},
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data){
+				if (data.status == 'OK'){
+					swal({
+						title: 'Success!',
+						text: data.message,
+						type: 'success',
+						showConfirmButton: false,
+						timer: 2000
+					}).then((result) => {
+						if (result.dismiss){
+							location.reload();
+						}
+					});
+				} else{
+					swal({
+						title: 'Error!',
+						text: data.message,
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+				$('#btn-kendala').removeAttr('disabled');
+			},
+			error: function(error){
+				swal({
+					title: 'Error!',
+					text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+					type: 'error',
+					confirmButtonText: 'OKE'
+				});
+				$('#btn-kendala').removeAttr('disabled');
+			}
+		});
+	});
+
+	$('#btn-cetak-pendapatan-supir').on('click', function(){
+		var supir_mobil_id = $('#supir_mobil_id').val();
+		var bulan = $('#bulan').val();
+		var tahun = $('#tahun').val();
+		window.open(window.location.origin+'/'+'views/admin/laporan/cetak-pendapatan-supir.php?id='+supir_mobil_id+'&bulan='+bulan+'&tahun='+tahun, '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');
+	});
+
+	$('#btn-cetak-laba-rugi').on('click', function(){
+		var bulan = $('#bulan').val();
+		var tahun = $('#tahun').val();
+		window.open(window.location.origin+'/'+'views/admin/laporan/cetak-laba-rugi.php?bulan='+bulan+'&tahun='+tahun, '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');
 	});
 
 });
@@ -1146,6 +1242,87 @@ function deleteDataSupirMobil(id) {
 		if (result.value) {
 			$.ajax({
 				url: '/app/supir_mobil/hapus-supir-mobil.php',
+				method: 'POST',
+				dataType: 'JSON',
+				data: {
+					uid: id
+				},
+				success: function(data){
+					if (data.status == 'OK'){
+						swal({
+							title: 'Success!',
+							text: data.message,
+							type: 'success',
+							showConfirmButton: false,
+							timer: 2000
+						}).then((result) => {
+							if (result.dismiss){
+								location.reload();
+							}
+						});
+					} else{
+						swal({
+							title: 'Error!',
+							text: data.message,
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					}
+				},
+				error: function(error){
+					swal({
+						title: 'Error!',
+						text: 'Mohon maaf telah terjadi sebuah kesalahan.',
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+			});
+		}
+	});
+}
+
+function getDataKendala(id) {
+	$.ajax({
+		url: '/app/kendala/get-data-kendala.php',
+		method: 'POST',
+		dataType: 'JSON',
+		data: { uid: id },
+		success: function(data){
+			$('#kendalaFormModalLabel').text('Form Ubah Data Kendala');
+			$('#form-kendala').trigger('reset');
+			$('#aksi').val('ubah');
+			$('#uid').val(data.data.id);
+			$('#supir_mobil_id').val(data.data.supir_mobil_id).trigger('change');
+			$('#tanggal').val(data.data.tanggal);
+			$('#kendala').val(data.data.kendala).trigger('change');
+			$('#biaya').val(data.data.biaya);
+			$('#keterangan').val(data.data.keterangan);
+			$('#kendalaFormModal').modal('show');
+		},
+		error: function(error){
+			swal({
+				title: 'Error!',
+				text: 'Mohon maaf telah terjadi sebuah kesalahan, silahkan reload kembali halaman ini.',
+				type: 'error',
+				confirmButtonText: 'OKE'
+			});
+		}
+	});
+}
+
+function deleteDataKendala(id) {
+	swal({
+		title: 'Peringatan!',
+		text: "Apakah anda yakin ingin menghapus data kendala ini?",
+		type: 'warning',
+		showCancelButton: true,
+		cancelButtonText: 'Tidak',
+		confirmButtonText: 'Ya, Saya Yakin!'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: '/app/kendala/hapus-kendala.php',
 				method: 'POST',
 				dataType: 'JSON',
 				data: {

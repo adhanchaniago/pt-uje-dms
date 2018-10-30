@@ -1,5 +1,9 @@
 <?php  
 
+	$bulan_array = [
+		'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+	];
+
 	function koneksi() {
 		$host = 'localhost';
 		$user = 'root';
