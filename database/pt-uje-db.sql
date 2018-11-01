@@ -121,7 +121,7 @@ CREATE TABLE `tb_mobil` (
   `gross` int(11) NOT NULL,
   `foto` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_mobil` */
 
@@ -131,7 +131,8 @@ insert  into `tb_mobil`(`id`,`plate`,`merk`,`jenis`,`gross`,`foto`) values
 (4,'BA8646AO','LIGHT TRUCK HINO','WU342R-HKMTJD3',17500,'1d008da989849643873c.jpg'),
 (5,'BA8762AO','TRUCK NISSAN','CKA 87 H',18000,'96f50a7ac2d86749741d.jpg'),
 (6,'BA9259AO','TRUCK ISUZU','FYZ 34 T',31000,'6a82ef987bfcdd80c39c.jpg'),
-(8,'BA1111AO','TRUCK NISSAN','FVR 34 P',31000,'db0731021570fdf44d44.jpg');
+(8,'BA1111AO','TRUCK NISSAN','FVR 34 P',31000,'db0731021570fdf44d44.jpg'),
+(9,'ba89789hg','hggjhg','jk',8767,'60d49db19dbafb089062.jpg');
 
 /*Table structure for table `tb_pelabuhan` */
 
@@ -158,22 +159,23 @@ DROP TABLE IF EXISTS `tb_spb`;
 CREATE TABLE `tb_spb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jalan_detail_id` int(11) NOT NULL,
+  `muat_no_spb` varchar(50) NOT NULL,
   `muat_tanggal` date NOT NULL,
   `muat_total_muatan` int(11) NOT NULL,
   `muat_berat_keseluruhan` int(11) NOT NULL,
+  `bongkar_no_spb` varchar(50) NOT NULL,
   `bongkar_tanggal` date NOT NULL,
   `bongkar_total_muatan` int(11) NOT NULL,
   `bongkar_berat_keseluruhan` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK7` (`jalan_detail_id`),
   CONSTRAINT `FK7` FOREIGN KEY (`jalan_detail_id`) REFERENCES `tb_jalan_detail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_spb` */
 
-insert  into `tb_spb`(`id`,`jalan_detail_id`,`muat_tanggal`,`muat_total_muatan`,`muat_berat_keseluruhan`,`bongkar_tanggal`,`bongkar_total_muatan`,`bongkar_berat_keseluruhan`) values 
-(9,11,'2018-10-30',17660,30000,'2018-11-03',17500,28000),
-(11,13,'2018-10-30',17660,26130,'2018-11-03',17500,24670);
+insert  into `tb_spb`(`id`,`jalan_detail_id`,`muat_no_spb`,`muat_tanggal`,`muat_total_muatan`,`muat_berat_keseluruhan`,`bongkar_no_spb`,`bongkar_tanggal`,`bongkar_total_muatan`,`bongkar_berat_keseluruhan`) values 
+(14,11,' 45/1/HHH/2018','2018-10-30',17660,24740,' 47/1/HHH/2018','2018-11-03',17500,26250);
 
 /*Table structure for table `tb_supir` */
 
