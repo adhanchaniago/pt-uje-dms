@@ -16,6 +16,10 @@
 						<div class="col-md-6">
 							<p>SPB Muat</p>
 							<div class="form-group">
+								<label for="muat_no_spb">No SPB</label>
+								<input type="text" class="form-control" id="muat_no_spb" name="muat_no_spb" value="" required>
+							</div>
+							<div class="form-group">
 								<label for="muat_tanggal">Tanggal Muat</label>
 								<input type="text" class="form-control" id="muat_tanggal" name="muat_tanggal" value="" required>
 							</div>
@@ -30,6 +34,10 @@
 						</div>
 						<div class="col-md-6">
 							<p>SPB Bongkar</p>
+							<div class="form-group">
+								<label for="bongkar_no_spb">No SPB</label>
+								<input type="text" class="form-control" id="bongkar_no_spb" name="bongkar_no_spb" value="" required>
+							</div>
 							<div class="form-group">
 								<label for="bongkar_tanggal">Tanggal Bongkar</label>
 								<input type="text" class="form-control" id="bongkar_tanggal" name="bongkar_tanggal" value="" required>

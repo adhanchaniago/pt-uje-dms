@@ -105,14 +105,16 @@
     						<th class="text-center" rowspan="2">#</th>
     						<th class="text-center" rowspan="2">PLATE</th>
     						<th class="text-center" rowspan="2">DRIVER</th>
-    						<th class="text-center" colspan="3">MUAT</th>
-    						<th class="text-center" colspan="3">BONGKAR</th>
+    						<th class="text-center" colspan="4">MUAT</th>
+    						<th class="text-center" colspan="4">BONGKAR</th>
     						<th class="text-center" colspan="2">KLEM</th>
     					</tr>
     					<tr>
+                            <th class="text-center">NO SPB</th>
     						<th class="text-center">TANGGAL</th>
     						<th class="text-center">MUATAN</th>
     						<th class="text-center">NOMINAL</th>
+                            <th class="text-center">NO SPB</th>
     						<th class="text-center">TANGGAL</th>
     						<th class="text-center">MUATAN</th>
     						<th class="text-center">NOMINAL</th>
@@ -124,8 +126,7 @@
     					<?php
         					$listDetail = [];
         					$qDetail = "
-	        					SELECT tb_jalan_detail.id AS detailID, tb_mobil.plate, tb_supir.nama AS namaSupir, tb_spb.muat_tanggal, 
-	        					tb_spb.muat_total_muatan, tb_spb.bongkar_tanggal, tb_spb.bongkar_total_muatan 
+	        					SELECT tb_jalan_detail.id AS detailID, tb_mobil.plate, tb_supir.nama AS namaSupir, tb_spb.muat_tanggal, tb_spb.muat_total_muatan, tb_spb.bongkar_tanggal, tb_spb.bongkar_total_muatan, tb_spb.muat_no_spb, tb_Spb.bongkar_no_spb 
 	        					FROM tb_jalan_detail, tb_supir_mobil, tb_mobil, tb_supir, tb_spb 
                                 WHERE tb_jalan_detail.supir_mobil_id = tb_supir_mobil.id AND tb_supir_mobil.supir_id = tb_supir.id 
                                 AND tb_supir_mobil.mobil_id = tb_mobil.id AND tb_spb.jalan_detail_id = tb_jalan_detail.id 
@@ -147,9 +148,11 @@
     							<td class="text-center"><?php echo $key+1 ?></td>
     							<td class="text-center"><?php echo $vDetail['plate'] ?></td>
     							<td class="text-center"><?php echo $vDetail['namaSupir'] ?></td>
+                                <td class="text-center"><?php echo $vDetail['muat_no_spb'] ?></td>
     							<td class="text-center"><?php echo date('d/m/Y', strtotime($vDetail['muat_tanggal'])) ?></td>
     							<td class="text-center"><?php echo number_format($vDetail['muat_total_muatan']) ?> KG</td>
     							<td class="text-center">IDR <?php echo number_format($nominal_muat = $vDetail['muat_total_muatan'] * $dJalan['nominal']) ?></td>
+                                <td class="text-center"><?php echo $vDetail['bongkar_no_spb'] ?></td>
     							<td class="text-center"><?php echo date('d/m/Y', strtotime($vDetail['bongkar_tanggal'])) ?></td>
     							<td class="text-center"><?php echo number_format($vDetail['bongkar_total_muatan']) ?> KG</td>
     							<td class="text-center">IDR <?php echo number_format($nominal_bongkar = $vDetail['bongkar_total_muatan'] * $dJalan['nominal']) ?></td>
@@ -179,9 +182,11 @@
     						<td></td>
     						<td colspan="2"><strong>TOTAL</strong></td>
     						<td></td>
+                            <td></td>
     						<td class="text-center"><strong><?php echo number_format($muat_total_keseluruhan) ?> KG</strong></td>
     						<td class="text-center"><strong>IDR <?php echo number_format($muat_nominal_keseluruhan) ?></strong></td>
     						<td></td>
+                            <td></td>
     						<td class="text-center"><strong><?php echo number_format($bongkar_total_keseluruhan) ?> KG</strong></td>
     						<td class="text-center"><strong>IDR <?php echo number_format($bongkar_nominal_keseluruhan) ?></strong></td>
     						<td class="text-center"><strong><?php echo number_format($klem_total_keseluruhan) ?> KG</strong></td>

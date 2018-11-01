@@ -79,11 +79,6 @@
         					<td>:</td>
         					<td><strong><?php echo number_format($dDetail['partai']) ?> KG</strong></td>
         				</tr>
-        				<tr>
-        					<td>Nominal</td>
-        					<td>:</td>
-        					<td><strong>IDR <?php echo number_format($dDetail['nominal'], 2) ?> /KG</strong></td>
-        				</tr>
         			</table>
         		</div>
         	</div><br>
