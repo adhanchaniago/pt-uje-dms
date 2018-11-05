@@ -77,7 +77,7 @@
         				<tr>
         					<td>Partai</td>
         					<td>:</td>
-        					<td><strong><?php echo number_format($dDetail['partai']) ?> KG</strong></td>
+        					<td><strong><?php echo number_format($dDetail['partai']).' TON / '.number_format($dDetail['partai']*1000).' KG' ?></strong></td>
         				</tr>
         			</table>
         		</div>
@@ -104,7 +104,7 @@
         				<tr>
         					<td>Gross</td>
         					<td>:</td>
-        					<td><strong><?php echo $dDetail['gross'] ?></strong></td>
+        					<td><strong><?php echo number_format($dDetail['gross']) ?> KG</strong></td>
         				</tr>
         			</table>
         		</div>

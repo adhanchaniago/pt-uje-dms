@@ -21,7 +21,7 @@
 								<input type="text" class="form-control" id="do_tanggal" name="do_tanggal" value="" required>
 							</div>
 							<div class="form-group">
-								<label for="partai">Partai (KG)</label>
+								<label for="partai">Partai (Ton)</label>
 								<input type="text" class="form-control" id="partai" name="partai" value="" required>
 							</div>
 							<div class="form-group">
@@ -104,6 +104,12 @@
 								<button type="button" class="btn btn-success" id="btn-tambah-armada">Tambah Armada</button>
 							</div>
 						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="partai_in_kg">Partai (KG)</label>
+								<input type="text" class="form-control" id="partai_in_kg" name="partai_in_kg" value="0" readonly>
+							</div>
+						</div>
 					</div><hr>
 					<div class="row">
 						<div class="col-md-12">
@@ -113,12 +119,16 @@
 										<th>#</th>
 										<th>Plate No</th>
 										<th>Nama Supir</th>
-										<th>Gross</th>
 										<th>Tgl Berangkat</th>
+										<th>Gross (KG)</th>
 									</tr>
 								</thead>
 								<tbody>
-									
+									<tr>
+										<td></td>
+										<td colspan="3">Total Gross</td>
+										<td id="total_gross">0</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

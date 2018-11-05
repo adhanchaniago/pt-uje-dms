@@ -424,17 +424,21 @@ $(function(){
 		language: 'en',
 		dateFormat: 'yyyy-mm-dd',
 		autoClose: true,
+		minDate: new Date(),
 	});
 
 	$('#tanggal_armada').datepicker({
 		language: 'en',
 		dateFormat: 'yyyy-mm-dd',
 		autoClose: true,
+		minDate: new Date(),
 	});
 
 	$('#btn-tambah-armada').on('click', function(){
 		var armada_id = $('#armada_berangkat').val();
 		var tgl_berangkat = $('#tanggal_armada').val();
+		var totalGross = $('#total_gross').html() * 1;
+		var partaiKg = $('#partai_in_kg').val();
 		$.ajax({
 			url: '/app/supir_mobil/get-detail-armada.php',
 			method: 'POST',
@@ -446,18 +450,58 @@ $(function(){
 					newRow += 		'<td>ID:'+data.data.id+'</td>';
 					newRow += 		'<td>'+data.data.plate+'</td>';
 					newRow += 		'<td>'+data.data.nama+'</td>';
-					newRow += 		'<td>'+data.data.gross+'KG</td>';
 					newRow += 		'<td>'+tgl_berangkat+'</td>';
+					newRow += 		'<td class="gross_detail">'+data.data.gross+'</td>';
 					newRow += 		'<input type="hidden" name="tanggal_berangkat[]" value="'+tgl_berangkat+'">';
 					newRow += 	'</tr>';
 
-				$('#tb-armada-berjalan tbody').append(newRow);
-				$("#armada_berangkat>option[value='"+data.data.id+"']").attr('disabled','disabled');
-				$('#armada_berangkat').select2({
-					theme: 'bootstrap4',
-					width: '100%',
-					placeholder: "Pilih Armada Yang Akan Berangkat",
-				});
+				var curent_gross = data.data.gross * 1;
+				var flag = 0;
+
+				if (!$('.gross_detail').length) {
+					var total_gross = 0;
+					total_gross = (total_gross * 1) + curent_gross;
+					if (total_gross > partaiKg) {
+						swal({
+							title: 'Error!',
+							text: 'Mohon maaf, total gross melebihi batas maximal pengangkutan.',
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					} else {
+						var flag = 1;
+						$('#total_gross').html(total_gross);
+					}
+				} else {
+					var total_gross = 0;
+					
+					$('.gross_detail').each(function() {
+						total_gross = (total_gross * 1) + ($(this).html() * 1);
+					});
+					total_gross = (total_gross * 1) + curent_gross;
+
+					if (total_gross > partaiKg) {
+						swal({
+							title: 'Error!',
+							text: 'Mohon maaf, total gross melebihi batas maximal pengangkutan.',
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					} else {
+						var flag = 1;
+						$('#total_gross').html(total_gross);
+					}
+				}
+
+				if (flag == 1) {
+					$('#tb-armada-berjalan tbody').prepend(newRow);
+					$("#armada_berangkat>option[value='"+data.data.id+"']").attr('disabled','disabled');
+					$('#armada_berangkat').select2({
+						theme: 'bootstrap4',
+						width: '100%',
+						placeholder: "Pilih Armada Yang Akan Berangkat",
+					});
+				}
 			},
 			error: function(error){
 				swal({
@@ -521,6 +565,11 @@ $(function(){
 	$('#tabel-list-armada').DataTable();
 
 	$('#table-data-do').DataTable();
+
+	$('#partai').on('keyup', function(){
+		var partai = $(this).val() * 1000;
+		$('#partai_in_kg').val(partai);
+	});
 
 	$('#muat_tanggal').datepicker({
 		language: 'en',

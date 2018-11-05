@@ -77,4 +77,19 @@
 		return $row;
 	}
 
+	function checkDONomor($no_do) {
+		$flag = true;
+		$conn = koneksi();
+		$query = "SELECT * FROM tb_jalan WHERE do_no = '$no_do'";
+		$process = mysqli_query($conn, $query);
+		if (mysqli_num_rows($process) > 0) {
+			$data = mysqli_fetch_assoc($process);
+			$status = $data['status'];
+			if ($status == 1) {
+				$flag = false;
+			}
+		}
+		return $flag;
+	}
+
 ?>

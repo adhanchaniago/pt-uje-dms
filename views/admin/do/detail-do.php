@@ -44,7 +44,7 @@
 					<tr>
 						<td>Partai</td>
 						<td>:</td>
-						<td><strong><?php echo number_format($dJalan['partai']) ?> KG</strong></td>
+						<td><strong><?php echo number_format($dJalan['partai']).' TON / '.number_format($dJalan['partai']*1000).' KG' ?></strong></td>
 					</tr>
 					<tr>
 						<td>Nominal</td>

@@ -19,6 +19,15 @@
 	$list_tanggal = $_POST['tanggal_berangkat'];
 	$jml_armada = count($list_armada);
 
+	// $checkDoNomor = checkDONomor($do_no);
+
+	// if ($checkDoNomor == false) {
+	// 	$data['status'] = 'ERROR';
+	// 	$data['message'] = 'Nomor Do yang diinputkan sudah terdaftar atau sudah berstatus finished!';
+	// 	echo json_encode($data);
+	// 	die();
+	// }
+
 	mysqli_autocommit($conn, FALSE);
 
 	$qJalan = "INSERT INTO tb_jalan (user_id, kebun_id, pelabuhan_id, do_no, do_tanggal, partai, jenis, nominal, status) VALUES('$uid', '$kebun_id', '$pelabuhan_id', '$do_no', '$do_tanggal', '$partai', '$jenis', '$nominal', '0')";
