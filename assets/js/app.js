@@ -1411,3 +1411,56 @@ function deleteDataKendala(id) {
 		}
 	});
 }
+
+function doubleDO(id) {
+	swal({
+		title: 'Peringatan!',
+		text: "Apakah anda yakin untuk Double Delivery Order ini? Status tidak akan bisa diubah lagi.",
+		type: 'warning',
+		showCancelButton: true,
+		cancelButtonText: 'Tidak',
+		confirmButtonText: 'Ya, Saya Yakin!'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: '/app/do/double.php',
+				method: 'POST',
+				dataType: 'JSON',
+				data: {
+					uid: id,
+					status: status
+				},
+				success: function(data){
+					if (data.status == 'OK'){
+						swal({
+							title: 'Success!',
+							text: data.message,
+							type: 'success',
+							showConfirmButton: false,
+							timer: 2000
+						}).then((result) => {
+							if (result.dismiss){
+								location.reload();
+							}
+						});
+					} else{
+						swal({
+							title: 'Error!',
+							text: data.message,
+							type: 'error',
+							confirmButtonText: 'OKE'
+						});
+					}
+				},
+				error: function(error){
+					swal({
+						title: 'Error!',
+						text: 'Mohon maaf telah terjadi sebuah kesalahan.',
+						type: 'error',
+						confirmButtonText: 'OKE'
+					});
+				}
+			});
+		}
+	});
+}

@@ -19,14 +19,14 @@
 	$list_tanggal = $_POST['tanggal_berangkat'];
 	$jml_armada = count($list_armada);
 
-	// $checkDoNomor = checkDONomor($do_no);
+	$checkDoNomor = checkDONomor($do_no);
 
-	// if ($checkDoNomor == false) {
-	// 	$data['status'] = 'ERROR';
-	// 	$data['message'] = 'Nomor Do yang diinputkan sudah terdaftar atau sudah berstatus finished!';
-	// 	echo json_encode($data);
-	// 	die();
-	// }
+	if ($checkDoNomor == false) {
+		$data['status'] = 'ERROR';
+		$data['message'] = 'Nomor Do yang diinputkan sudah terdaftar atau sudah berstatus finished!';
+		echo json_encode($data);
+		die();
+	}
 
 	mysqli_autocommit($conn, FALSE);
 

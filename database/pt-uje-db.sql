@@ -31,6 +31,7 @@ CREATE TABLE `tb_jalan` (
   `jenis` enum('CPO') NOT NULL,
   `nominal` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
+  `dobel` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK2` (`user_id`),
   KEY `FK3` (`kebun_id`),
@@ -38,12 +39,13 @@ CREATE TABLE `tb_jalan` (
   CONSTRAINT `FK2` FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK3` FOREIGN KEY (`kebun_id`) REFERENCES `tb_kebun` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK4` FOREIGN KEY (`pelabuhan_id`) REFERENCES `tb_pelabuhan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jalan` */
 
-insert  into `tb_jalan`(`id`,`user_id`,`kebun_id`,`pelabuhan_id`,`do_no`,`do_tanggal`,`partai`,`jenis`,`nominal`,`status`) values 
-(5,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-11-06',70,'CPO',250,0);
+insert  into `tb_jalan`(`id`,`user_id`,`kebun_id`,`pelabuhan_id`,`do_no`,`do_tanggal`,`partai`,`jenis`,`nominal`,`status`,`dobel`) values 
+(5,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-11-06',70,'CPO',250,1,1),
+(6,1,1,1,'PDG/DO/CPO/08/2018/USM-PSB','2018-11-06',70,'CPO',250,0,0);
 
 /*Table structure for table `tb_jalan_detail` */
 
@@ -59,14 +61,15 @@ CREATE TABLE `tb_jalan_detail` (
   KEY `FK6` (`supir_mobil_id`),
   CONSTRAINT `FK20` FOREIGN KEY (`supir_mobil_id`) REFERENCES `tb_supir_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK5` FOREIGN KEY (`jalan_id`) REFERENCES `tb_jalan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jalan_detail` */
 
 insert  into `tb_jalan_detail`(`id`,`jalan_id`,`supir_mobil_id`,`tanggal_berangkat`) values 
 (14,5,9,'2018-11-07'),
 (15,5,6,'2018-11-07'),
-(16,5,4,'2018-11-07');
+(16,5,4,'2018-11-07'),
+(17,6,4,'2018-11-11');
 
 /*Table structure for table `tb_kebun` */
 
@@ -226,8 +229,8 @@ CREATE TABLE `tb_supir_mobil` (
 
 insert  into `tb_supir_mobil`(`id`,`supir_id`,`mobil_id`,`status`) values 
 (4,2,2,1),
-(6,4,4,1),
-(9,6,6,1);
+(6,4,4,0),
+(9,6,6,0);
 
 /*Table structure for table `tb_user` */
 

@@ -84,8 +84,11 @@
 		$process = mysqli_query($conn, $query);
 		if (mysqli_num_rows($process) > 0) {
 			$data = mysqli_fetch_assoc($process);
+			$double = $data['dobel'];
 			$status = $data['status'];
-			if ($status == 1) {
+			if ($double == 1 && $status == 1) {
+				$flag = true;
+			} else {
 				$flag = false;
 			}
 		}

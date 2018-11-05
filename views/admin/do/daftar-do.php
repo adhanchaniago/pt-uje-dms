@@ -37,6 +37,7 @@
 										<a href="?page=detail-do&id=<?php echo $value['id'] ?>" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-clipboard-list"></i>&nbsp;Detail DO</a>
 										<?php if ($hak_akses == 'admin'): ?>
 											<button type="button" class="btn btn-danger btn-sm <?php echo $value['status'] == '1' ? 'disabled' : '' ?>" onclick="ubahStatusDO(<?php echo $value['id'].','.$value['status'] ?>)"><i class="fa fa-check-square"></i>&nbsp;Finished</button>
+											<button type="button" class="btn btn-success btn-sm <?php echo $value['status'] == '1' ? 'disabled' : '' ?>" onclick="doubleDO(<?php echo $value['id'] ?>)"><i class="fa fa-check-double"></i>&nbsp;Double</button>
 										<?php endif ?>
 										<button type="button" class="btn btn-primary btn-sm" onclick="window.open(window.location.origin+'/'+'views/admin/do/cetak-laporan-spb.php?id=<?php echo $value['id'] ?>', '_blank', 'location=yes, height=570, width=1000, scrollbars=yes, status=yes');">
 											<i class="fa fa-print"></i>&nbsp;Laporan SPB 
