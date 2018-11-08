@@ -30,7 +30,7 @@
 								<td><?php echo $key+1 ?></td>
 								<td><?php echo $value['do_no'] ?></td>
 								<td><?php echo date('d/m/Y', strtotime($value['do_tanggal'])) ?></td>
-								<td><?php echo number_format($value['partai']) ?> KG</td>
+								<td><?php echo number_format($value['partai']) ?> TON</td>
 								<td><?php echo $value['status'] == '0' ? 'Ongoing' : 'Finished' ?></td>
 								<td>
 									<div class="btn-group">
