@@ -96,6 +96,7 @@ DROP TABLE IF EXISTS `tb_kendala`;
 
 CREATE TABLE `tb_kendala` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bon_no` varchar(50) NOT NULL DEFAULT '-',
   `supir_mobil_id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `kendala` enum('ban','benen','baut roda','oli','selendang') NOT NULL,
@@ -104,14 +105,14 @@ CREATE TABLE `tb_kendala` (
   PRIMARY KEY (`id`),
   KEY `FF99` (`supir_mobil_id`),
   CONSTRAINT `FF99` FOREIGN KEY (`supir_mobil_id`) REFERENCES `tb_supir_mobil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_kendala` */
 
-insert  into `tb_kendala`(`id`,`supir_mobil_id`,`tanggal`,`kendala`,`biaya`,`keterangan`) values 
-(2,4,'2018-10-30','oli',200000,'-'),
-(3,4,'2018-10-30','ban',3000000,'-'),
-(4,9,'2018-10-30','oli',150000,'-');
+insert  into `tb_kendala`(`id`,`bon_no`,`supir_mobil_id`,`tanggal`,`kendala`,`biaya`,`keterangan`) values 
+(2,'-',4,'2018-10-30','oli',200000,'-'),
+(3,'-',4,'2018-10-30','ban',3000000,'-'),
+(4,'-',9,'2018-10-30','oli',150000,'-');
 
 /*Table structure for table `tb_mobil` */
 

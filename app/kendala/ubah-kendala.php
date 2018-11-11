@@ -9,12 +9,13 @@
 
 	$uid = sanitizeThis($_POST['uid']);
 	$supir_mobil_id = sanitizeThis($_POST['supir_mobil_id']);
+	$bon_no = sanitizeThis($_POST['bon_no']);
 	$tanggal = sanitizeThis($_POST['tanggal']);
 	$kendala = sanitizeThis($_POST['kendala']);
 	$biaya = sanitizeThis($_POST['biaya']);
 	$keterangan = sanitizeThis($_POST['keterangan']);
 
-	$query = "UPDATE tb_kendala SET supir_mobil_id = '$supir_mobil_id', tanggal = '$tanggal', kendala = '$kendala', biaya = '$biaya', keterangan = '$keterangan' WHERE id = '$uid'";
+	$query = "UPDATE tb_kendala SET supir_mobil_id = '$supir_mobil_id', bon_no = '$bon_no', tanggal = '$tanggal', kendala = '$kendala', biaya = '$biaya', keterangan = '$keterangan' WHERE id = '$uid'";
 	$process = mysqli_query($conn, $query);
 
 	if ($process) {

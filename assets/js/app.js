@@ -1343,6 +1343,7 @@ function getDataKendala(id) {
 			$('#aksi').val('ubah');
 			$('#uid').val(data.data.id);
 			$('#supir_mobil_id').val(data.data.supir_mobil_id).trigger('change');
+			$('#bon_no').val(data.data.bon_no);
 			$('#tanggal').val(data.data.tanggal);
 			$('#kendala').val(data.data.kendala).trigger('change');
 			$('#biaya').val(data.data.biaya);

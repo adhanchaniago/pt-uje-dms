@@ -20,6 +20,7 @@
 							<th>#</th>
 							<th>Plate</th>
 							<th>Supir</th>
+							<th>Nomor BON</th>
 							<th>Tanggal</th>
 							<th>Kendala</th>
 							<th>Biaya</th>
@@ -34,7 +35,7 @@
 
 							$list_data = [];
 							$query = "
-								SELECT tb_kendala.id, tb_kendala.tanggal, tb_kendala.kendala, tb_kendala.biaya, 
+								SELECT tb_kendala.id, tb_kendala.bon_no, tb_kendala.tanggal, tb_kendala.kendala, tb_kendala.biaya, 
 								tb_kendala.keterangan, tb_mobil.plate, tb_supir.nama 
 								FROM tb_kendala, tb_supir_mobil, tb_mobil, tb_supir 
 								WHERE tb_kendala.supir_mobil_id = tb_supir_mobil.id AND tb_supir_mobil.supir_id = tb_supir.id 
@@ -51,6 +52,7 @@
 								<td><?php echo $key+1 ?></td>
 								<td><?php echo $value['plate'] ?></td>
 								<td><?php echo $value['nama'] ?></td>
+								<td><?php echo $value['bon_no'] ?></td>
 								<td><?php echo date('d M Y', strtotime($value['tanggal'])) ?></td>
 								<td><?php echo ucfirst($value['kendala']) ?></td>
 								<td>IDR <?php echo number_format($value['biaya']) ?></td>
@@ -100,7 +102,7 @@
 								$qMobil = "
 									SELECT tb_supir_mobil.id, tb_mobil.plate, tb_supir.nama 
 									FROM tb_supir_mobil, tb_mobil, tb_supir WHERE tb_supir_mobil.supir_id = tb_supir.id 
-									AND tb_supir_mobil.mobil_id = tb_mobil.id AND tb_supir_mobil.status = 0
+									AND tb_supir_mobil.mobil_id = tb_mobil.id
 								";
 								$pMobil = mysqli_query($conn, $qMobil);
 								while($rMobil = mysqli_fetch_array($pMobil)) {
@@ -111,6 +113,10 @@
 								}
 							?>
 						</select>
+					</div>
+					<div class="form-group">
+						<label for="bon_no">Nomor BON</label>
+						<input type="text" class="form-control" id="bon_no" name="bon_no" value="" required>
 					</div>
 					<div class="form-group">
 						<label for="tanggal">Tanggal</label>
